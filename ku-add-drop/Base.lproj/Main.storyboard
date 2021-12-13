@@ -42,14 +42,13 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="ku_add_drop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nkB-Rt-dcK">
-                                <rect key="frame" x="21" y="295" width="374" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nkB-Rt-dcK">
+                                <rect key="frame" x="20" y="339" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -92,6 +91,7 @@
                         <outlet property="userNameTextField" destination="nkB-Rt-dcK" id="yev-Dh-fWg"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-262" y="70"/>
         </scene>
@@ -102,8 +102,60 @@
                     <view key="view" contentMode="scaleToFill" id="Oee-OI-vmV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ENj-S6-mS1">
+                                <rect key="frame" x="144.5" y="95.5" width="125" height="122"/>
+                                <color key="tintColor" systemColor="systemIndigoColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="Qlj-hZ-8X7"/>
+                                    <constraint firstAttribute="width" constant="125" id="aEU-jG-BdS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Murat Han Aydoğan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hM-LR-frq">
+                                <rect key="frame" x="110" y="249" width="194.5" height="26"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="n4I-FK-kip">
+                                <rect key="frame" x="20" y="305" width="374" height="507"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="rO2-oi-QOX">
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rO2-oi-QOX" id="UO0-pP-ihq">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMP319B" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6N-pC-sci">
+                                                    <rect key="frame" x="20" y="11.5" width="89" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="e6N-pC-sci" firstAttribute="centerY" secondItem="UO0-pP-ihq" secondAttribute="centerY" id="R2I-AP-3Nl"/>
+                                                <constraint firstItem="e6N-pC-sci" firstAttribute="leading" secondItem="UO0-pP-ihq" secondAttribute="leading" constant="20" symbolic="YES" id="T4B-Z9-4il"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="UPB-Tm-eU2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="n4I-FK-kip" firstAttribute="top" secondItem="9hM-LR-frq" secondAttribute="bottom" constant="30" id="5Yh-6o-Ebc"/>
+                            <constraint firstItem="ENj-S6-mS1" firstAttribute="centerX" secondItem="UPB-Tm-eU2" secondAttribute="centerX" id="6wH-tC-YVA"/>
+                            <constraint firstItem="UPB-Tm-eU2" firstAttribute="trailing" secondItem="n4I-FK-kip" secondAttribute="trailing" constant="20" id="A8n-dV-XE8"/>
+                            <constraint firstItem="ENj-S6-mS1" firstAttribute="top" secondItem="UPB-Tm-eU2" secondAttribute="top" constant="50" id="LjG-9z-G98"/>
+                            <constraint firstItem="n4I-FK-kip" firstAttribute="leading" secondItem="UPB-Tm-eU2" secondAttribute="leading" constant="20" id="NYS-WM-WhP"/>
+                            <constraint firstItem="UPB-Tm-eU2" firstAttribute="bottom" secondItem="n4I-FK-kip" secondAttribute="bottom" constant="50" id="QHr-cd-EwJ"/>
+                            <constraint firstItem="9hM-LR-frq" firstAttribute="top" secondItem="ENj-S6-mS1" secondAttribute="bottom" constant="30" id="ceP-B9-POT"/>
+                            <constraint firstItem="9hM-LR-frq" firstAttribute="centerX" secondItem="UPB-Tm-eU2" secondAttribute="centerX" id="f49-dU-Eql"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Sk-ql-JZ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -127,8 +179,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
