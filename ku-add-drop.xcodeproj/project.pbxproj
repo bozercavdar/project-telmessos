@@ -13,6 +13,10 @@
 		0F2692EA2767BDD50064BDD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F2692E82767BDD50064BDD1 /* Main.storyboard */; };
 		0F2692EC2767BDD60064BDD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F2692EB2767BDD60064BDD1 /* Assets.xcassets */; };
 		0F2692EF2767BDD60064BDD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F2692ED2767BDD60064BDD1 /* LaunchScreen.storyboard */; };
+		0F7B659B276F6F3C00AA7ADE /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B659A276F6F3C00AA7ADE /* Course.swift */; };
+		0F7B659D276F6F4800AA7ADE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B659C276F6F4800AA7ADE /* User.swift */; };
+		0F7B659F276F6F8500AA7ADE /* Instructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B659E276F6F8500AA7ADE /* Instructor.swift */; };
+		0F7B65A1276F6F9500AA7ADE /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B65A0276F6F9500AA7ADE /* Comment.swift */; };
 		0F987873276F507E003AE4C3 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F987872276F507E003AE4C3 /* LoginPageViewController.swift */; };
 		0F987876276F5A16003AE4C3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0F987875276F5A16003AE4C3 /* FirebaseAnalytics */; };
 		0F987878276F5A16003AE4C3 /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 0F987877276F5A16003AE4C3 /* FirebaseAnalyticsSwift-Beta */; };
@@ -52,6 +56,10 @@
 		0F2692EB2767BDD60064BDD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F2692EE2767BDD60064BDD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0F2692F02767BDD60064BDD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F7B659A276F6F3C00AA7ADE /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = SOURCE_ROOT; };
+		0F7B659C276F6F4800AA7ADE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = SOURCE_ROOT; };
+		0F7B659E276F6F8500AA7ADE /* Instructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructor.swift; sourceTree = SOURCE_ROOT; };
+		0F7B65A0276F6F9500AA7ADE /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = SOURCE_ROOT; };
 		0F987872276F507E003AE4C3 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		0F9878A9276F72C0003AE4C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +146,10 @@
 		0F987870276F4AD8003AE4C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0F7B659A276F6F3C00AA7ADE /* Course.swift */,
+				0F7B659C276F6F4800AA7ADE /* User.swift */,
+				0F7B659E276F6F8500AA7ADE /* Instructor.swift */,
+				0F7B65A0276F6F9500AA7ADE /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,8 +266,12 @@
 			files = (
 				0F987873276F507E003AE4C3 /* LoginPageViewController.swift in Sources */,
 				0F2692E32767BDD50064BDD1 /* AppDelegate.swift in Sources */,
+				0F7B659D276F6F4800AA7ADE /* User.swift in Sources */,
+				0F7B65A1276F6F9500AA7ADE /* Comment.swift in Sources */,
+				0F7B659B276F6F3C00AA7ADE /* Course.swift in Sources */,
 				0F1EBE6E276F4A4200886D8D /* UserPageViewController.swift in Sources */,
 				0F2692E52767BDD50064BDD1 /* SceneDelegate.swift in Sources */,
+				0F7B659F276F6F8500AA7ADE /* Instructor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
