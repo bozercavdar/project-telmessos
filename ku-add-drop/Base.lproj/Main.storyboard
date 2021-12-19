@@ -95,10 +95,10 @@
             </objects>
             <point key="canvasLocation" x="-262" y="70"/>
         </scene>
-        <!--View Controller-->
+        <!--User Page View Controller-->
         <scene sceneID="HAc-mM-iwK">
             <objects>
-                <viewController id="yyh-Yu-60a" sceneMemberID="viewController">
+                <viewController id="yyh-Yu-60a" customClass="UserPageViewController" customModule="ku_add_drop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oee-OI-vmV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

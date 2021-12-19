@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F1EBE6E276F4A4200886D8D /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBE6D276F4A4200886D8D /* UserPageViewController.swift */; };
 		0F2692E32767BDD50064BDD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2692E22767BDD50064BDD1 /* AppDelegate.swift */; };
 		0F2692E52767BDD50064BDD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2692E42767BDD50064BDD1 /* SceneDelegate.swift */; };
 		0F2692E72767BDD50064BDD1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2692E62767BDD50064BDD1 /* LoginViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F1EBE6D276F4A4200886D8D /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		0F2692DF2767BDD50064BDD1 /* ku-add-drop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ku-add-drop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F2692E22767BDD50064BDD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F2692E42767BDD50064BDD1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				0F2692EB2767BDD60064BDD1 /* Assets.xcassets */,
 				0F2692ED2767BDD60064BDD1 /* LaunchScreen.storyboard */,
 				0F2692F02767BDD60064BDD1 /* Info.plist */,
+				0F1EBE6D276F4A4200886D8D /* UserPageViewController.swift */,
 			);
 			path = "ku-add-drop";
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			files = (
 				0F2692E72767BDD50064BDD1 /* LoginViewController.swift in Sources */,
 				0F2692E32767BDD50064BDD1 /* AppDelegate.swift in Sources */,
+				0F1EBE6E276F4A4200886D8D /* UserPageViewController.swift in Sources */,
 				0F2692E52767BDD50064BDD1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
