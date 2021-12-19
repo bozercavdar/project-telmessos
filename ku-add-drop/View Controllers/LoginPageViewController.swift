@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class LoginPageViewController: UIViewController {
 
@@ -20,16 +22,31 @@ class LoginPageViewController: UIViewController {
     
 
     @IBAction func loginAction(_ sender: Any) {
-        let username : String = usernameLabel.text!
-        let password : String = passwordLabel.text!
+        let username = usernameLabel.text!
+        let password = passwordLabel.text!
         print(username, password)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+        FirebaseAuth.Auth.auth().signIn(withEmail: username, password: password, completion: {result, error in
+            guard error == nil else {
+                print("wrong credentials")
+                return
+            }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+
+            // This is to get the SceneDelegate object from your view controller
+            // then call the change root view controller function to change to main tab bar
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+        })
         
-        // This is to get the SceneDelegate object from your view controller
-        // then call the change root view controller function to change to main tab bar
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+//        FirebaseAuth.Auth.auth().createUser(withEmail: username, password: password, completion: {result, error in
+//            guard error == nil else {
+//                return
+//            }
+//            print("created new")
+//        })
+        
+        
     }
     
     /*
