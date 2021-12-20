@@ -13,7 +13,7 @@ class LoginPageViewController: UIViewController {
 
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
-    
+    var iconClick = true
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +21,15 @@ class LoginPageViewController: UIViewController {
     }
     
 
+    @IBAction func passwordViewAction(_ sender: Any) {
+        if(iconClick == true){
+            passwordLabel.isSecureTextEntry = false
+        }else{
+            passwordLabel.isSecureTextEntry = true
+        }
+        iconClick = !iconClick
+    }
+    
     @IBAction func loginAction(_ sender: Any) {
         let username = usernameLabel.text!
         let password = passwordLabel.text!

@@ -35,7 +35,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nkB-Rt-dcK">
                                 <rect key="frame" x="25" y="270" width="364" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxs-5t-HFn">
                                 <rect key="frame" x="25" y="238" width="364" height="22"/>
@@ -46,7 +46,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7vi-Fu-tsl">
                                 <rect key="frame" x="25" y="360" width="364" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FdD-GJ-rb0">
                                 <rect key="frame" x="25" y="329" width="364" height="21"/>
@@ -74,6 +74,15 @@
                                     <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W7Z-W4-j5t"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGr-89-4cm">
+                                <rect key="frame" x="339" y="361.5" width="51" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="eye.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="passwordViewAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GLI-la-32U"/>
+                                    <action selector="passwordViewAction:" destination="4Yf-eG-8dk" eventType="touchUpInside" id="Wsc-gx-ZMY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -85,6 +94,7 @@
                             <constraint firstItem="FHH-5B-SPU" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="PHA-l5-mTW"/>
                             <constraint firstItem="Rxs-5t-HFn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="QDv-b0-0CY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nkB-Rt-dcK" secondAttribute="trailing" constant="25" id="SrK-wM-9ze"/>
+                            <constraint firstItem="tGr-89-4cm" firstAttribute="leading" secondItem="7vi-Fu-tsl" secondAttribute="trailing" constant="-50" id="aWq-7x-9kd"/>
                             <constraint firstItem="WNl-tt-czb" firstAttribute="top" secondItem="7vi-Fu-tsl" secondAttribute="bottom" constant="40" id="bOZ-24-4oS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FHH-5B-SPU" secondAttribute="bottom" constant="29" id="bTZ-PY-RI1"/>
                             <constraint firstItem="7vi-Fu-tsl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="c6D-Ey-s0Y"/>
@@ -92,6 +102,7 @@
                             <constraint firstItem="7vi-Fu-tsl" firstAttribute="top" secondItem="FdD-GJ-rb0" secondAttribute="bottom" constant="10" id="cFj-E0-9a0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Rxs-5t-HFn" secondAttribute="trailing" constant="25" id="h3H-Nm-DHs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WNl-tt-czb" secondAttribute="trailing" constant="25" id="kHe-hf-1eE"/>
+                            <constraint firstItem="tGr-89-4cm" firstAttribute="centerY" secondItem="7vi-Fu-tsl" secondAttribute="centerY" id="pDc-Tu-lZ9"/>
                             <constraint firstItem="FdD-GJ-rb0" firstAttribute="top" secondItem="nkB-Rt-dcK" secondAttribute="bottom" constant="25" id="wUh-iE-X2v"/>
                             <constraint firstItem="WNl-tt-czb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="xvw-sf-aJl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7vi-Fu-tsl" secondAttribute="trailing" constant="25" id="zUB-Hn-UVn"/>
@@ -128,10 +139,10 @@
             </objects>
             <point key="canvasLocation" x="699" y="436"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up Page View Controller-->
         <scene sceneID="cvd-Fh-D1Q">
             <objects>
-                <viewController id="4Yf-eG-8dk" sceneMemberID="viewController">
+                <viewController id="4Yf-eG-8dk" customClass="SignUpPageViewController" customModule="ku_add_drop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fvQ-vq-2qF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,12 +162,12 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xF6-Ag-L7P">
                                 <rect key="frame" x="25" y="219" width="364" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ktc-w0-cQe">
                                 <rect key="frame" x="25" y="309" width="364" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OL-Mv-4f0">
                                 <rect key="frame" x="25" y="368" width="364" height="21"/>
@@ -167,7 +178,10 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qet-xD-t2G">
                                 <rect key="frame" x="25" y="399" width="364" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <connections>
+                                    <action selector="usernameLabel:" destination="dMh-yo-CiB" eventType="editingDidEnd" id="qLR-CI-iJc"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWX-0G-5r4">
                                 <rect key="frame" x="25" y="458" width="364" height="21"/>
@@ -178,12 +192,15 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RIz-i8-vBM">
                                 <rect key="frame" x="25" y="489" width="364" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJ0-ai-ugU">
                                 <rect key="frame" x="25" y="548" width="364" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signupAction:" destination="4Yf-eG-8dk" eventType="touchUpInside" id="8zu-xA-CkW"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOU-Ks-aHi">
                                 <rect key="frame" x="345" y="821" width="44" height="31"/>
@@ -191,6 +208,14 @@
                                 <buttonConfiguration key="configuration" style="gray" image="info.circle" catalog="system"/>
                                 <connections>
                                     <segue destination="hrk-jf-tht" kind="presentation" id="SZq-pE-xNh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4w3-5O-u1F">
+                                <rect key="frame" x="339" y="490.5" width="51" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="eye.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="passwordViewAction:" destination="4Yf-eG-8dk" eventType="touchUpInside" id="YNp-cy-5st"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -205,6 +230,7 @@
                             <constraint firstItem="XWX-0G-5r4" firstAttribute="top" secondItem="Qet-xD-t2G" secondAttribute="bottom" constant="25" id="9Ph-zv-tjm"/>
                             <constraint firstItem="M29-3j-jHw" firstAttribute="trailing" secondItem="Ktc-w0-cQe" secondAttribute="trailing" constant="25" id="9uC-Pn-Ypd"/>
                             <constraint firstItem="Qet-xD-t2G" firstAttribute="top" secondItem="9OL-Mv-4f0" secondAttribute="bottom" constant="10" id="9uk-YR-xpY"/>
+                            <constraint firstItem="4w3-5O-u1F" firstAttribute="leading" secondItem="RIz-i8-vBM" secondAttribute="trailing" constant="-50" id="CwH-aj-dcV"/>
                             <constraint firstItem="EAw-L9-uBv" firstAttribute="top" secondItem="M29-3j-jHw" secondAttribute="top" constant="100" id="FQi-XH-au2"/>
                             <constraint firstItem="NOU-Ks-aHi" firstAttribute="leading" secondItem="M29-3j-jHw" secondAttribute="leading" constant="345" id="G29-SU-jLo"/>
                             <constraint firstItem="NOU-Ks-aHi" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SJ0-ai-ugU" secondAttribute="bottom" constant="150" id="IrB-FP-ZxE"/>
@@ -228,11 +254,19 @@
                             <constraint firstItem="M29-3j-jHw" firstAttribute="trailing" secondItem="TYB-Rm-Yr1" secondAttribute="trailing" constant="25" id="uTg-Op-hNO"/>
                             <constraint firstItem="M29-3j-jHw" firstAttribute="trailing" secondItem="xF6-Ag-L7P" secondAttribute="trailing" constant="25" id="vag-dt-EU2"/>
                             <constraint firstItem="XWX-0G-5r4" firstAttribute="leading" secondItem="M29-3j-jHw" secondAttribute="leading" constant="25" id="zlU-fx-IiZ"/>
+                            <constraint firstItem="4w3-5O-u1F" firstAttribute="centerY" secondItem="RIz-i8-vBM" secondAttribute="centerY" id="zuQ-Do-fU0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BWA-l9-eqc"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="xF6-Ag-L7P" id="djW-Zv-xkm"/>
+                        <outlet property="passwordLabel" destination="RIz-i8-vBM" id="bbl-zw-5gY"/>
+                        <outlet property="surnameLabel" destination="Ktc-w0-cQe" id="aJX-wV-rrt"/>
+                        <outlet property="usernameLabel" destination="Qet-xD-t2G" id="gfV-yJ-isj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EpM-MC-RvR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="dMh-yo-CiB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-262" y="775"/>
         </scene>
@@ -691,6 +725,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="eye.fill" catalog="system" width="128" height="78"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
