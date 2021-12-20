@@ -59,8 +59,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Sign Up"/>
                                 <connections>
-                                    <action selector="signupAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="spD-fR-Bba"/>
-                                    <action selector="singupAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X6U-cf-7jI"/>
                                     <segue destination="4Yf-eG-8dk" kind="show" id="w8Z-VO-e2s"/>
                                 </connections>
                             </button>
