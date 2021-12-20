@@ -46,6 +46,7 @@
 		0F9878A6276F5A16003AE4C3 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 0F9878A5276F5A16003AE4C3 /* FirebaseStorageCombine-Community */; };
 		0F9878A8276F5A16003AE4C3 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 0F9878A7276F5A16003AE4C3 /* FirebaseStorageSwift-Beta */; };
 		0F9878AA276F72C0003AE4C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F9878A9276F72C0003AE4C3 /* GoogleService-Info.plist */; };
+		0FAA3BF9277088D000A25A82 /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAA3BF8277088D000A25A82 /* SignUpPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		0F2692F02767BDD60064BDD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F987872276F507E003AE4C3 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		0F9878A9276F72C0003AE4C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0FAA3BF8277088D000A25A82 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			children = (
 				0F987872276F507E003AE4C3 /* LoginPageViewController.swift */,
 				0F0EC0E727707E3B0056B672 /* CourseDetailViewController.swift */,
+				0FAA3BF8277088D000A25A82 /* SignUpPageViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				0F2692E52767BDD50064BDD1 /* SceneDelegate.swift in Sources */,
 				0F0EC0E827707E3B0056B672 /* CourseDetailViewController.swift in Sources */,
 				0F0EC0F92770828A0056B672 /* User.swift in Sources */,
+				0FAA3BF9277088D000A25A82 /* SignUpPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
