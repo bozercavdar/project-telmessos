@@ -10,14 +10,31 @@ import Firebase
 
 class SignUpPageViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UITextField!
+    @IBOutlet weak var surnameLabel: UITextField!
+    @IBOutlet weak var usernameLabel: UITextField!
+    @IBOutlet weak var passwordLabel: UITextField!
+    var iconClick = true
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-    func signup(){
-        FirebaseAuth.Auth.auth().createUser(withEmail: "username", password: "password", completion: {result, error in
+    @IBAction func passwordViewAction(_ sender: Any) {
+        if(iconClick == true){
+            passwordLabel.isSecureTextEntry = false
+        }else{
+            passwordLabel.isSecureTextEntry = true
+        }
+        iconClick = !iconClick
+    }
+    
+    @IBAction func signupAction(_ sender: Any) {
+        let username = usernameLabel.text!
+        let password = passwordLabel.text!
+        print(username, password)
+        FirebaseAuth.Auth.auth().createUser(withEmail: username, password: password, completion: {result, error in
             guard error == nil else {
                 return
             }
@@ -29,7 +46,6 @@ class SignUpPageViewController: UIViewController {
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
         })
     }
-    
 
     /*
     // MARK: - Navigation
