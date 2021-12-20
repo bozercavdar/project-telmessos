@@ -103,13 +103,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0F0EC0EA277081CF0056B672 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		0F0EC0EB277081E10056B672 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,8 +133,8 @@
 		0F2692E12767BDD50064BDD1 /* ku-add-drop */ = {
 			isa = PBXGroup;
 			children = (
+				0FAA3BF72770869500A25A82 /* Cells */,
 				0F0EC0EB277081E10056B672 /* Models */,
-				0F0EC0EA277081CF0056B672 /* Cells */,
 				0F9878A9276F72C0003AE4C3 /* GoogleService-Info.plist */,
 				0F98786F276F4AC9003AE4C3 /* View Controllers */,
 				0F2692E22767BDD50064BDD1 /* AppDelegate.swift */,
@@ -162,6 +155,13 @@
 				0F0EC0E727707E3B0056B672 /* CourseDetailViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		0FAA3BF72770869500A25A82 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
