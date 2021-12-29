@@ -15,6 +15,8 @@ class SignUpPageViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
     var iconClick = true
+    let db = Firestore.firestore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +33,8 @@ class SignUpPageViewController: UIViewController {
     }
     
     @IBAction func signupAction(_ sender: Any) {
+        let name = nameLabel.text!
+        let surname = surnameLabel.text!
         let username = usernameLabel.text!
         let password = passwordLabel.text!
         print(username, password)
@@ -38,6 +42,20 @@ class SignUpPageViewController: UIViewController {
             guard error == nil else {
                 return
             }
+            // Add a new document with a generated ID
+            var ref: DocumentReference? = nil
+            ref = self.db.collection("users").addDocument(data: [
+                "name": name,
+                "surname": surname,
+                "courses": []
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                }
+            }
+            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
 
