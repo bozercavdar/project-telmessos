@@ -24,22 +24,23 @@ class AddCourseViewController: UIViewController {
         if let user = user{
             documentId = user.email!
             let courseName = courseNameLabel.text!
-            
-            db.collection("users").document(documentId)
-                .addSnapshotListener { documentSnapshot, error in
-                  guard let document = documentSnapshot else {
-                    print("Error fetching document: \(error!)")
-                    return
-                  }
-                  guard let data = document.data() else {
-                    print("Document data was empty.")
-                    return
-                  }
-                    let userName = data["name"] as? String ?? ""
-                    print(userName)
+            var takenCourses : [String] = []
+            let docRef = db.collection("users").document(documentId)
+
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let data = document.data()
+                    let courseArray = data!["courses"] as? Array ?? []
+                    for course in courseArray{
+                        takenCourses.append(course as! String)
+                    }
+                    takenCourses.append(courseName)
+                    self.db.collection("users").document(self.documentId).setData([ "courses": takenCourses], merge: true)
+                } else {
+                    print("Document does not exist")
                 }
-            
-            db.collection("users").document(documentId).setData([ "courses": [courseName]], merge: true)
+            }
+            courseNameLabel.text = ""
 
         }
     }

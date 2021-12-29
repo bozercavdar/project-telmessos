@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F05C313277CE0AE00E7FC7F /* AddCourseDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C312277CE0AE00E7FC7F /* AddCourseDetailPageViewController.swift */; };
 		0F0EC0E827707E3B0056B672 /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0EC0E727707E3B0056B672 /* CourseDetailViewController.swift */; };
 		0F0EC0F82770828A0056B672 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0EC0F42770828A0056B672 /* Comment.swift */; };
 		0F0EC0F92770828A0056B672 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0EC0F52770828A0056B672 /* User.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F05C312277CE0AE00E7FC7F /* AddCourseDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseDetailPageViewController.swift; sourceTree = "<group>"; };
 		0F0EC0E727707E3B0056B672 /* CourseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
 		0F0EC0F42770828A0056B672 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		0F0EC0F52770828A0056B672 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				0F0EC0E727707E3B0056B672 /* CourseDetailViewController.swift */,
 				0FAA3BF8277088D000A25A82 /* SignUpPageViewController.swift */,
 				0F3A4AF9277C9BCD00629DE3 /* AddCourseViewController.swift */,
+				0F05C312277CE0AE00E7FC7F /* AddCourseDetailPageViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				0F2692E32767BDD50064BDD1 /* AppDelegate.swift in Sources */,
 				0F3A4AFA277C9BCD00629DE3 /* AddCourseViewController.swift in Sources */,
 				0F1EBE6E276F4A4200886D8D /* UserPageViewController.swift in Sources */,
+				0F05C313277CE0AE00E7FC7F /* AddCourseDetailPageViewController.swift in Sources */,
 				0F2692E52767BDD50064BDD1 /* SceneDelegate.swift in Sources */,
 				0F0EC0E827707E3B0056B672 /* CourseDetailViewController.swift in Sources */,
 				0F0EC0F92770828A0056B672 /* User.swift in Sources */,
