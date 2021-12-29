@@ -42,19 +42,6 @@ class SignUpPageViewController: UIViewController {
             guard error == nil else {
                 return
             }
-            // Add a new document with a generated ID
-            var ref: DocumentReference? = nil
-            ref = self.db.collection("users").addDocument(data: [
-                "name": name,
-                "surname": surname,
-                "courses": []
-            ]) { err in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                } else {
-                    print("Document added with ID: \(ref!.documentID)")
-                }
-            }
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
@@ -62,8 +49,21 @@ class SignUpPageViewController: UIViewController {
             // This is to get the SceneDelegate object from your view controller
             // then call the change root view controller function to change to main tab bar
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+            
+            // Add a new document
+            self.db.collection("users").document(username).setData([
+                "name": name,
+                "surname": surname,
+            ]) { err in
+                if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                    }
+            }
         })
     }
+    
 
     /*
     // MARK: - Navigation

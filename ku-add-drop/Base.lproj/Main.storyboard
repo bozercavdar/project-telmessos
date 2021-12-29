@@ -446,10 +446,10 @@
             </objects>
             <point key="canvasLocation" x="1814" y="775"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Course View Controller-->
         <scene sceneID="6S5-9m-S30">
             <objects>
-                <viewController id="mOn-Hd-UzY" sceneMemberID="viewController">
+                <viewController id="mOn-Hd-UzY" customClass="AddCourseViewController" customModule="ku_add_drop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BCf-wE-baC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -465,6 +465,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add"/>
                                 <connections>
+                                    <action selector="addCourse:" destination="mOn-Hd-UzY" eventType="touchUpInside" id="l6N-Kl-CZX"/>
                                     <segue destination="HwZ-9F-P6b" kind="show" id="nQo-94-RbY"/>
                                 </connections>
                             </button>
@@ -489,6 +490,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uGJ-20-Hcg"/>
+                    <connections>
+                        <outlet property="courseNameLabel" destination="dzF-AO-ayc" id="Z9k-4H-vk3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaM-HO-Qw0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
