@@ -507,10 +507,10 @@
             </objects>
             <point key="canvasLocation" x="2741" y="775"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Course Detail Page View Controller-->
         <scene sceneID="JfY-PQ-OaO">
             <objects>
-                <viewController id="HwZ-9F-P6b" sceneMemberID="viewController">
+                <viewController id="HwZ-9F-P6b" customClass="AddCourseDetailPageViewController" customModule="ku_add_drop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CbV-XG-fJT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -572,6 +572,9 @@
                                 <rect key="frame" x="25" y="620" width="364" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Post"/>
+                                <connections>
+                                    <action selector="postAction:" destination="HwZ-9F-P6b" eventType="touchUpInside" id="2Te-X2-VUv"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Haz-8l-tcD">
                                 <rect key="frame" x="25" y="470" width="364" height="100"/>
@@ -622,6 +625,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aDW-XP-zS1"/>
+                    <connections>
+                        <outlet property="commentTextView" destination="Haz-8l-tcD" id="djo-67-Mdj"/>
+                        <outlet property="courseNameLabel" destination="inn-eP-0Tp" id="XVz-5E-Red"/>
+                        <outlet property="courseRatingSlider" destination="oXW-XR-2Zn" id="QlB-yp-NDy"/>
+                        <outlet property="instructorRatingSlider" destination="vrK-ZU-yx7" id="lNx-nu-Wjc"/>
+                        <outlet property="instructorTextInput" destination="ix8-KN-h7O" id="gvU-HW-dui"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ncN-O5-8yL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
