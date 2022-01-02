@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseFirestoreSwift
 
 class AddCourseDetailPageViewController: UIViewController {
 
@@ -32,17 +33,21 @@ class AddCourseDetailPageViewController: UIViewController {
         let commentContent = commentTextView.text!
         let courseRating = round(courseRatingSlider.value * 10) / 10.0
         let instructorRating = round(instructorRatingSlider.value * 10) / 10.0
-        //for courses
-        addName(collection: "courses", documentId: courseName, name: courseName)
-        addElement(collection: "courses", documentId: courseName, field: "instructors", toBeAdded: instructorName)
-        addElement(collection: "courses", documentId: courseName, field: "comments", toBeAdded: commentContent)
-        increaseField(collection: "courses", documentId: courseName, field: "totalRating", increaseAmount: Double(courseRating))
-        increaseField(collection: "courses", documentId: courseName, field: "voterAmount", increaseAmount: 1)
         
-        //for instructors
-        addName(collection: "instructors", documentId: instructorName, name: instructorName)
-        increaseField(collection: "instructors", documentId: instructorName, field: "totalRating", increaseAmount: Double(instructorRating))
-        increaseField(collection: "instructors", documentId: instructorName, field: "voterAmount", increaseAmount: 1)
+
+        
+        updateElement(collection: "courses", documentId: courseName, courseName: courseName, instructorName: instructorName, commentContent: commentContent, courseRating: Int(courseRating), instructorRating: Int(instructorRating))
+//        //for courses
+//        addName(collection: "courses", documentId: courseName, name: courseName)
+//        addElement(collection: "courses", documentId: courseName, field: "instructors", toBeAdded: instructorName)
+//        addElement(collection: "courses", documentId: courseName, field: "comments", toBeAdded: commentContent)
+//        increaseField(collection: "courses", documentId: courseName, field: "totalRating", increaseAmount: Double(courseRating))
+//        increaseField(collection: "courses", documentId: courseName, field: "voterAmount", increaseAmount: 1)
+//
+//        //for instructors
+//        addName(collection: "instructors", documentId: instructorName, name: instructorName)
+//        increaseField(collection: "instructors", documentId: instructorName, field: "totalRating", increaseAmount: Double(instructorRating))
+//        increaseField(collection: "instructors", documentId: instructorName, field: "voterAmount", increaseAmount: 1)
     }
     
     /*
@@ -55,6 +60,220 @@ class AddCourseDetailPageViewController: UIViewController {
     }
     */
     
+    func updateElement(collection: String, documentId: String, courseName: String, instructorName: String, commentContent: String, courseRating: Int, instructorRating: Int) {
+        var courseObject = Course(courseName: courseName, totalScore: 0, totalRateAmount: 0, commentsList:[], instList: [])
+        var commentObject = Comment(courseName: "COMP100", owner: "Murat Özer", content: "İyi", courseScore: 4)
+        
+        let docRef = db.collection(collection).document(documentId)
+        docRef.getDocument { (document, error) in
+            let result = Result {
+              try document?.data(as: Course.self)
+            }
+            switch result {
+            case .success(let course):
+                if let course = course {
+                    self.updatedAddInstructor(collection: "instructors", documentId: instructorName, name: instructorName, inputScore: instructorRating)
+                    // A `City` value was successfully initialized from the DocumentSnapshot.
+                    courseObject.courseName = course.courseName
+                    courseObject.totalScore = course.totalScore
+                    courseObject.totalRateAmount = course.totalRateAmount
+                    courseObject.commentsList = course.commentsList
+                    courseObject.instList = course.instList
+                    print("---------------------Course: \(courseObject)")
+                    
+                    let instRef = self.db.collection("instructors").document(instructorName)
+                    var ifExists = false
+                    for ref in courseObject.instList{
+                        if ref.path == instRef.path{
+                            ifExists = true
+                        }
+                    }
+                    if(!ifExists){
+                        courseObject.instList.append(instRef)
+                    }
+                    courseObject.totalRateAmount += 1
+                    courseObject.totalScore += courseRating
+                    courseObject.commentsList.append(commentObject)
+
+
+                    do {
+                        try self.db.collection(collection).document(documentId).setData(from: courseObject)
+                    } catch let error {
+                        print("Error writing city to Firestore: \(error)")
+                    }
+
+
+                } else {
+                    self.updatedAddInstructor(collection: "instructors", documentId: instructorName, name: instructorName, inputScore: instructorRating)
+
+                    // A nil value was successfully initialized from the DocumentSnapshot,
+                    // or the DocumentSnapshot was nil.
+                    print("--------------------Document does not exist")
+                    
+                    let instRef = self.db.collection("instructors").document(instructorName)
+                    var ifExists = false
+                    for ref in courseObject.instList{
+                        if ref.path == instRef.path{
+                            ifExists = true
+                        }
+                    }
+                    if(!ifExists){
+                        courseObject.instList.append(instRef)
+                    }
+                    courseObject.totalRateAmount += 1
+                    courseObject.totalScore += courseRating
+                    courseObject.commentsList.append(commentObject)
+
+
+                    do {
+                        try self.db.collection(collection).document(documentId).setData(from: courseObject)
+                    } catch let error {
+                        print("Error writing city to Firestore: \(error)")
+                    }
+                }
+            case .failure(let error):
+                // A `City` value could not be initialized from the DocumentSnapshot.
+                print("-------------------Error decoding course: \(error)")
+            }
+        }
+
+
+    }
+    
+    func updatedAddInstructor(collection: String, documentId: String, name: String, inputScore: Int){
+        var instructorObject = Instructor(instructorName: name, totalScore: 0, totalRateAmount: 0)
+        let docRef = db.collection(collection).document(documentId)
+        docRef.getDocument { (document, error) in
+            let result = Result {
+              try document?.data(as: Instructor.self)
+            }
+            switch result {
+            case .success(let instructor):
+                if let instructor = instructor {
+                    
+                    instructorObject.totalScore = instructor.totalScore
+                    instructorObject.totalRateAmount = instructor.totalRateAmount
+                    print("---------------------Instructor: \(instructorObject)")
+                    
+                    instructorObject.totalScore += inputScore
+                    instructorObject.totalRateAmount += 1
+                    
+                    do {
+                        try self.db.collection(collection).document(documentId).setData(from: instructorObject)
+                    } catch let error {
+                        print("Error writing city to Firestore: \(error)")
+                    }
+                } else {
+                    print("--------------------Document does not exist")
+                    
+                    instructorObject.totalScore += inputScore
+                    instructorObject.totalRateAmount += 1
+                    do {
+                        try self.db.collection(collection).document(documentId).setData(from: instructorObject)
+                    } catch let error {
+                        print("Error writing city to Firestore: \(error)")
+                    }
+                }
+            case .failure(let error):
+
+                print("-------------------Error decoding instructor: \(error)")
+            }
+        }
+    }
+    
+//    func playGroundForRef(){
+//        var courseObject = Course(courseName: "", totalScore: 0, totalRateAmount: 0, instructorsList: [], commentsList:[], instList: [])
+//        var instructorObject = Instructor(instructorName: "Burhan Özer", totalScore: 15, totalRateAmount: 3)
+//        var commentObject = Comment(courseName: "COMP100", owner: "Murat Özer", content: "İyi", courseScore: 4)
+//
+//        //self.updatedAddInstructor(collection: "instructors", documentId: instructorName, name: instructorName, inputScore: instructorRating)
+//
+//        let docRef = db.collection("courses").document("COMP100")
+//        docRef.getDocument { (document, error) in
+//            let result = Result {
+//              try document?.data(as: Course.self)
+//
+//            }
+//            switch result {
+//            case .success(let course):
+//                if let course = course {
+//                    // A `City` value was successfully initialized from the DocumentSnapshot.
+//                    courseObject.courseName = course.courseName
+//                    courseObject.totalScore = course.totalScore
+//                    courseObject.totalRateAmount = course.totalRateAmount
+//                    courseObject.instructorsList = course.instructorsList
+//                    courseObject.commentsList = course.commentsList
+//                    courseObject.instList = course.instList
+//                    print("---------------------Course: \(courseObject)")
+//
+//                    let attilaRef = self.db.collection("instructors").document("Attila 3")
+//                    var ifExists = false
+//                    for ref in courseObject.instList{
+//                        if ref.path == attilaRef.path{
+//                            ifExists = true
+//                        }
+//                    }
+//                    if(!ifExists){
+//                        courseObject.instList.append(attilaRef)
+//                    }
+//
+//                    courseObject.totalRateAmount += 1
+//                    courseObject.totalScore += 5
+//                    courseObject.instructorsList.append(instructorObject)
+//                    courseObject.commentsList.append(commentObject)
+//
+//
+//                    do {
+//                        try self.db.collection("courses").document("COMP100").setData(from: courseObject)
+//                    } catch let error {
+//                        print("Error writing city to Firestore: \(error)")
+//                    }
+//
+//
+//                } else {
+//                    // A nil value was successfully initialized from the DocumentSnapshot,
+//                    // or the DocumentSnapshot was nil.
+//                    print("--------------------Document does not exist")
+//
+//
+//                }
+//            case .failure(let error):
+//                // A `City` value could not be initialized from the DocumentSnapshot.
+//                print("-------------------Error decoding course: \(error)")
+//            }
+//        }
+//    }
+    
+    func readInstructorObject(docRef: DocumentReference){
+        var instructorObject = Instructor(instructorName: "Burhan Özer", totalScore: 15, totalRateAmount: 3)
+        docRef.getDocument { (document, error) in
+            let result = Result {
+              try document?.data(as: Instructor.self)
+                
+            }
+            switch result {
+            case .success(let instructor):
+                if let instructor = instructor {
+                    instructorObject.instructorName = instructor.instructorName
+                    instructorObject.totalScore = instructor.totalScore
+                    instructorObject.totalRateAmount = instructor.totalRateAmount
+
+                    print("---------------------Attila: \(instructorObject)")
+                    
+                } else {
+                    // A nil value was successfully initialized from the DocumentSnapshot,
+                    // or the DocumentSnapshot was nil.
+                    print("--------------------Document does not exist")
+                    
+
+                }
+            case .failure(let error):
+                // A `City` value could not be initialized from the DocumentSnapshot.
+                print("-------------------Error decoding course: \(error)")
+            }
+        }
+    }
+    
     func addElement(collection: String, documentId: String, field: String, toBeAdded: String ){
         let docRef = db.collection(collection).document(documentId)
         var prevData : [String] = []
@@ -62,11 +281,23 @@ class AddCourseDetailPageViewController: UIViewController {
             if let document = document, document.exists {
                 let data = document.data()
                 let fieldArray = data![field] as? Array ?? []
+                print("fieldArray", fieldArray)
                 for element in fieldArray{
                     prevData.append(element as! String)
                 }
+                print("prevDAta ", prevData)
                 prevData.append(toBeAdded)
-                self.db.collection(collection).document(documentId).setData([ field: prevData], merge: true)
+                // Set the "capital" field of the city 'DC'
+                docRef.updateData([
+                    field: prevData
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+                //self.db.collection(collection).document(documentId).setData([ field: prevData], merge: true)
             } else {
                 self.db.collection(collection).document(documentId).setData([ field: [toBeAdded]], merge: true)
             }

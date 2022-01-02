@@ -6,12 +6,21 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct Course: Codable {
-    let courseId: String
-    let courseName: String
-    let totalScore: Int
-    let totalRateAmount: Int
-    let instructorsList: [String]
-    let commentsList: [String]
+    var courseName: String
+    var totalScore: Int
+    var totalRateAmount: Int
+    var commentsList: [Comment]
+    var instList: [DocumentReference]
+    
+    enum CodingKeys: String, CodingKey {
+        case courseName
+        case totalScore
+        case totalRateAmount
+        case commentsList
+        case instList
+    }
 }
