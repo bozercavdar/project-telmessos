@@ -13,7 +13,7 @@ struct Course: Codable {
     var courseName: String
     var totalScore: Int
     var totalRateAmount: Int
-    var commentsList: [Comment]
+    var commentsList: [DocumentReference]
     var instList: [DocumentReference]
     
     enum CodingKeys: String, CodingKey {

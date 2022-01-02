@@ -18,8 +18,10 @@ class AddCourseDetailPageViewController: UIViewController {
     @IBOutlet weak var instructorRatingSlider: UISlider!
     @IBOutlet weak var commentTextView: UITextView!
     
+    
     let db = Firestore.firestore()
     var addedCourseName: String?
+    let user = FirebaseAuth.Auth.auth().currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +64,7 @@ class AddCourseDetailPageViewController: UIViewController {
     
     func updateElement(collection: String, documentId: String, courseName: String, instructorName: String, commentContent: String, courseRating: Int, instructorRating: Int) {
         var courseObject = Course(courseName: courseName, totalScore: 0, totalRateAmount: 0, commentsList:[], instList: [])
-        var commentObject = Comment(courseName: "COMP100", owner: "Murat Özer", content: "İyi", courseScore: 4)
-        
+        var ownerID = ""
         let docRef = db.collection(collection).document(documentId)
         docRef.getDocument { (document, error) in
             let result = Result {
@@ -73,7 +74,10 @@ class AddCourseDetailPageViewController: UIViewController {
             case .success(let course):
                 if let course = course {
                     self.updatedAddInstructor(collection: "instructors", documentId: instructorName, name: instructorName, inputScore: instructorRating)
-                    // A `City` value was successfully initialized from the DocumentSnapshot.
+                    if let user = self.user{
+                        ownerID = user.email!
+                        self.updatedAddComment(collection: "comments", owner: ownerID, courseName: courseName, content: commentContent, courseScore: courseRating)
+                    }
                     courseObject.courseName = course.courseName
                     courseObject.totalScore = course.totalScore
                     courseObject.totalRateAmount = course.totalRateAmount
@@ -91,9 +95,21 @@ class AddCourseDetailPageViewController: UIViewController {
                     if(!ifExists){
                         courseObject.instList.append(instRef)
                     }
+                    
+                    let commentHeader = ownerID + "-" + courseName
+                    let commentRef = self.db.collection("comments").document(commentHeader)
+                    var ifExistsComment = false
+                    for ref in courseObject.commentsList{
+                        if ref.path == commentRef.path{
+                            ifExistsComment = true
+                        }
+                    }
+                    if(!ifExistsComment){
+                        courseObject.commentsList.append(commentRef)
+                    }
+                    
                     courseObject.totalRateAmount += 1
                     courseObject.totalScore += courseRating
-                    courseObject.commentsList.append(commentObject)
 
 
                     do {
@@ -105,7 +121,10 @@ class AddCourseDetailPageViewController: UIViewController {
 
                 } else {
                     self.updatedAddInstructor(collection: "instructors", documentId: instructorName, name: instructorName, inputScore: instructorRating)
-
+                    if let user = self.user{
+                        ownerID = user.email!
+                        self.updatedAddComment(collection: "comments", owner: ownerID, courseName: courseName, content: commentContent, courseScore: courseRating)
+                    }
                     // A nil value was successfully initialized from the DocumentSnapshot,
                     // or the DocumentSnapshot was nil.
                     print("--------------------Document does not exist")
@@ -120,9 +139,22 @@ class AddCourseDetailPageViewController: UIViewController {
                     if(!ifExists){
                         courseObject.instList.append(instRef)
                     }
+                    
+                    let commentHeader = ownerID + "-" + courseName
+                    let commentRef = self.db.collection("comments").document(commentHeader)
+                    var ifExistsComment = false
+                    for ref in courseObject.commentsList{
+                        if ref.path == commentRef.path{
+                            ifExistsComment = true
+                        }
+                    }
+                    if(!ifExistsComment){
+                        courseObject.commentsList.append(commentRef)
+                    }
+                    
                     courseObject.totalRateAmount += 1
                     courseObject.totalScore += courseRating
-                    courseObject.commentsList.append(commentObject)
+
 
 
                     do {
@@ -170,6 +202,53 @@ class AddCourseDetailPageViewController: UIViewController {
                     instructorObject.totalRateAmount += 1
                     do {
                         try self.db.collection(collection).document(documentId).setData(from: instructorObject)
+                    } catch let error {
+                        print("Error writing city to Firestore: \(error)")
+                    }
+                }
+            case .failure(let error):
+
+                print("-------------------Error decoding instructor: \(error)")
+            }
+        }
+    }
+    
+    func updatedAddComment(collection: String, owner: String, courseName: String, content: String, courseScore: Int){
+        var commentObject = Comment(courseName: "", owner: "", content: "", courseScore: 0)
+        let documentId = owner + "-" + courseName
+        let docRef = db.collection(collection).document(documentId)
+        docRef.getDocument { (document, error) in
+            let result = Result {
+              try document?.data(as: Comment.self)
+            }
+            switch result {
+            case .success(let comment):
+                if let comment = comment {
+                    
+                    commentObject.courseName = comment.courseName
+                    commentObject.owner = comment.owner
+                    commentObject.content = comment.content
+                    commentObject.courseScore = comment.courseScore
+                    print("---------------------Instructor: \(commentObject)")
+                    
+                    commentObject.content = content
+                    commentObject.courseScore = courseScore
+                    
+                    do {
+                        try self.db.collection(collection).document(documentId).setData(from: commentObject)
+                    } catch let error {
+                        print("Error writing city to Firestore: \(error)")
+                    }
+                } else {
+                    print("--------------------Document does not exist")
+                    
+                    commentObject.owner = owner
+                    commentObject.courseName = courseName
+                    commentObject.content = content
+                    commentObject.courseScore = courseScore
+                    
+                    do {
+                        try self.db.collection(collection).document(documentId).setData(from: commentObject)
                     } catch let error {
                         print("Error writing city to Firestore: \(error)")
                     }
