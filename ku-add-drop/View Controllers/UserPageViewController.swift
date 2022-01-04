@@ -16,12 +16,19 @@ class UserPageViewController: UIViewController {
     
     var courseName : String = ""
     let user = FirebaseAuth.Auth.auth().currentUser
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameLabel.text = user?.email
+        
+        if let user = self.user{
+            usernameLabel.text = user.email!
+            getUsername(collection: "users", documentId: user.email!)
+        }
+        
         // Do any additional setup after loading the view.
     }
+    
     
 
     /*
@@ -33,5 +40,23 @@ class UserPageViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func getUsername(collection: String, documentId: String) -> String? {
+
+        var fullName = ""
+        let docRef = db.collection(collection).document(documentId)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                let name = data!["name"] as! String
+                let surname = data!["surname"] as! String
+                fullName = name + " " + surname
+                print(fullName)
+                
+            } else {
+                print("------------------ Error")
+            }
+        }
+        return fullName
+    }
 
 }
