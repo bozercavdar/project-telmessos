@@ -13,6 +13,7 @@ import FirebaseFirestoreSwift
 class UserPageViewController: UIViewController {
 
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var userImageView: UIImageView!
     
     var courseName : String = ""
     let user = FirebaseAuth.Auth.auth().currentUser
@@ -30,7 +31,14 @@ class UserPageViewController: UIViewController {
     }
     
     
-
+    @IBAction func imageSelect(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        picker.allowsEditing = true
+        self.present(picker, animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -58,5 +66,15 @@ class UserPageViewController: UIViewController {
         }
         return fullName
     }
+    
+    
 
+}
+
+extension UserPageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]){
+        let image = info[.editedImage] as! UIImage
+        self.userImageView.image = image
+        self.dismiss(animated: true)
+    }
 }
