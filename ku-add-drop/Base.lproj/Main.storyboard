@@ -667,10 +667,10 @@
             </objects>
             <point key="canvasLocation" x="3624.6376811594205" y="774.77678571428567"/>
         </scene>
-        <!--View Controller-->
+        <!--Search Page View Controller-->
         <scene sceneID="fck-Dn-lbY">
             <objects>
-                <viewController id="qzi-yP-gQM" sceneMemberID="viewController">
+                <viewController id="qzi-yP-gQM" customClass="SearchPageViewController" customModule="ku_add_drop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ps7-r3-Gfp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -691,6 +691,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Search"/>
                                 <connections>
+                                    <action selector="searchClass:" destination="qzi-yP-gQM" eventType="touchUpInside" id="NRJ-rp-8MA"/>
                                     <segue destination="h4M-mV-9y9" kind="show" id="YDZ-VB-PZp"/>
                                 </connections>
                             </button>
@@ -710,15 +711,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7O2-P4-KnC"/>
+                    <connections>
+                        <outlet property="courseNameField" destination="Cr9-1C-T00" id="j9S-0R-V00"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFi-hb-1MW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2742" y="1448"/>
         </scene>
-        <!--View Controller-->
+        <!--Course Detail View Controller-->
         <scene sceneID="SdX-eu-yA5">
             <objects>
-                <viewController id="h4M-mV-9y9" sceneMemberID="viewController">
+                <viewController id="h4M-mV-9y9" customClass="CourseDetailViewController" customModule="ku_add_drop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gVK-s5-imi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -771,6 +775,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="maC-rH-Vt8"/>
+                    <connections>
+                        <outlet property="courseNameLabel" destination="6ET-UZ-A6x" id="zJh-dS-NJV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="unZ-Gj-bLH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -19,6 +19,7 @@ class UserPageViewController: UIViewController {
     let user = FirebaseAuth.Auth.auth().currentUser
     let db = Firestore.firestore()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +38,7 @@ class UserPageViewController: UIViewController {
         picker.delegate = self
         picker.allowsEditing = true
         self.present(picker, animated: true)
+        
     }
     
     /*
@@ -67,12 +69,43 @@ class UserPageViewController: UIViewController {
         return fullName
     }
     
-    
+//    func uploadMedia(completion: @escaping (_ url: String?) -> Void) {
+//        let storageRef = FIRStorage.storage().reference().child("myImage.png")
+//        if let uploadData = UIImagePNGRepresentation(self.myImageView.image!) {
+//            storageRef.put(uploadData, metadata: nil) { (metadata, error) in
+//                if error != nil {
+//                    print("error")
+//                    completion(nil)
+//                } else {
+//                    completion((metadata?.downloadURL()?.absoluteString)!))
+//                    // your uploaded photo url.
+//                }
+//           }
+//     }
+        
+//        func addElement(collection: String, documentId: String, field: String, toBeAdded: String ){
+//            let docRef = db.collection(collection).document(documentId)
+//            var prevData : [String] = []
+//            docRef.getDocument { (document, error) in
+//                if let document = document, document.exists {
+//                    let data = document.data()
+//                    let fieldArray = data![field] as? Array ?? []
+//                    for element in fieldArray{
+//                        prevData.append(element as! String)
+//                    }
+//                    prevData.append(toBeAdded)
+//                    self.db.collection(collection).document(documentId).setData([ field: prevData], merge: true)
+//                } else {
+//                    self.db.collection(collection).document(documentId).setData([ field: [toBeAdded]], merge: true)
+//                }
+//            }
+//        }
 
 }
 
 extension UserPageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]){
+        print(info)
         let image = info[.editedImage] as! UIImage
         self.userImageView.image = image
         self.dismiss(animated: true)
