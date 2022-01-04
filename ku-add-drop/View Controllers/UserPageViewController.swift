@@ -6,13 +6,20 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
+import FirebaseFirestoreSwift
 
 class UserPageViewController: UIViewController {
 
     @IBOutlet weak var usernameLabel: UILabel!
+    
+    var courseName : String = ""
+    let user = FirebaseAuth.Auth.auth().currentUser
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        usernameLabel.text = user?.email
         // Do any additional setup after loading the view.
     }
     
