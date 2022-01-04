@@ -18,6 +18,18 @@ class AddCourseDetailPageViewController: UIViewController {
     @IBOutlet weak var instructorRatingSlider: UISlider!
     @IBOutlet weak var commentTextView: UITextView!
     
+    @IBOutlet weak var courseRatingLabel: UILabel!
+    @IBOutlet weak var instructorRatingLabel: UILabel!
+    
+    @IBAction func courseSliderValueChanged(_ sender: UISlider) {
+        let courseRating = Int(round(courseRatingSlider.value * 10) / 10.0)
+        courseRatingLabel.text = "\(courseRating) ⭐️"
+
+    }
+    @IBAction func instructorSliderValueChanged(_ sender: UISlider) {
+        let instructorRating = Int(round(instructorRatingSlider.value * 10) / 10.0)
+        instructorRatingLabel.text = "\(instructorRating) ⭐️"
+    }
     
     let db = Firestore.firestore()
     var addedCourseName: String?

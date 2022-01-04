@@ -327,10 +327,10 @@
             </objects>
             <point key="canvasLocation" x="1814" y="82"/>
         </scene>
-        <!--View Controller-->
+        <!--User Page View Controller-->
         <scene sceneID="5Mn-z4-HAX">
             <objects>
-                <viewController id="dNr-zD-7qU" sceneMemberID="viewController">
+                <viewController id="dNr-zD-7qU" customClass="UserPageViewController" customModule="ku_add_drop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iRy-jt-bS1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -388,6 +388,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9cm-aW-O6K"/>
+                    <connections>
+                        <outlet property="usernameLabel" destination="3H6-2L-Vbf" id="Xgn-B9-bIM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsO-rM-G23" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -529,6 +532,9 @@
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="1" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="oXW-XR-2Zn">
                                 <rect key="frame" x="127" y="217.5" width="161" height="31"/>
+                                <connections>
+                                    <action selector="courseSliderValueChanged:" destination="HwZ-9F-P6b" eventType="valueChanged" id="d8E-Ae-Af5"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3/5 ⭐️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7q-Nv-7id">
                                 <rect key="frame" x="336" y="222" width="53" height="21"/>
@@ -555,6 +561,9 @@
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="1" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="vrK-ZU-yx7">
                                 <rect key="frame" x="127" y="363.5" width="161" height="31"/>
+                                <connections>
+                                    <action selector="instructorSliderValueChanged:" destination="HwZ-9F-P6b" eventType="valueChanged" id="373-hE-6FH"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3/5 ⭐️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hM0-Lv-6VD">
                                 <rect key="frame" x="336" y="368" width="53" height="21"/>
@@ -628,7 +637,9 @@
                     <connections>
                         <outlet property="commentTextView" destination="Haz-8l-tcD" id="djo-67-Mdj"/>
                         <outlet property="courseNameLabel" destination="inn-eP-0Tp" id="XVz-5E-Red"/>
+                        <outlet property="courseRatingLabel" destination="K7q-Nv-7id" id="qQf-nM-oUq"/>
                         <outlet property="courseRatingSlider" destination="oXW-XR-2Zn" id="QlB-yp-NDy"/>
+                        <outlet property="instructorRatingLabel" destination="hM0-Lv-6VD" id="chB-IX-KhC"/>
                         <outlet property="instructorRatingSlider" destination="vrK-ZU-yx7" id="lNx-nu-Wjc"/>
                         <outlet property="instructorTextInput" destination="ix8-KN-h7O" id="gvU-HW-dui"/>
                     </connections>

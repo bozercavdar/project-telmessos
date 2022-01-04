@@ -104,7 +104,6 @@
 				0F2692EB2767BDD60064BDD1 /* Assets.xcassets */,
 				0F2692ED2767BDD60064BDD1 /* LaunchScreen.storyboard */,
 				0F2692F02767BDD60064BDD1 /* Info.plist */,
-				0F1EBE6D276F4A4200886D8D /* UserPageViewController.swift */,
 			);
 			path = "ku-add-drop";
 			sourceTree = "<group>";
@@ -112,6 +111,7 @@
 		0F98786F276F4AC9003AE4C3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0F1EBE6D276F4A4200886D8D /* UserPageViewController.swift */,
 				0F987872276F507E003AE4C3 /* LoginPageViewController.swift */,
 				0F0EC0E727707E3B0056B672 /* CourseDetailViewController.swift */,
 				0FAA3BF8277088D000A25A82 /* SignUpPageViewController.swift */,

@@ -9,6 +9,7 @@ import UIKit
 
 class UserPageViewController: UIViewController {
 
+    @IBOutlet weak var usernameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
