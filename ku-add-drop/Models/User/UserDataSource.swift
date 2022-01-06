@@ -20,6 +20,7 @@ class UserDataSource {
     }
     
     func getUsername(completion: @escaping (String?)->Void) {
+        
         var documentId = ""
         var fullName = ""
         if let user = self.user{
@@ -42,7 +43,14 @@ class UserDataSource {
         DispatchQueue.main.async {
             self.delegate?.userNameLoaded()
         }
-
+    }
+    
+    func addUser(userObject: User) {
+        do {
+            try self.db.collection("users").document(userObject.email).setData(from: userObject)
+        } catch let error {
+            print("Error writing comment to Firestore: \(error)")
+        }
     }
     
 }

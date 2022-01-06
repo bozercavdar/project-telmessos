@@ -6,20 +6,20 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct User: Codable {
-    let userId: String
-    let userName: String
-    let userSurname: String
-    let userEmail: String
+    let name: String
+    let surname: String
+    let email: String
     let imageName: String
-    let takenCoursesList: [String]
+    let takenCoursesList: [DocumentReference]
 
     enum CodingKeys: String, CodingKey {
-        case userId
-        case userName
-        case userSurname
-        case userEmail
+        case name
+        case surname
+        case email
         case imageName
         case takenCoursesList
     }

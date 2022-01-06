@@ -17,6 +17,7 @@ class SignUpPageViewController: UIViewController {
     @IBOutlet weak var passwordLabel: UITextField!
     var iconClick = true
     let db = Firestore.firestore()
+    let userDataSource = UserDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,16 +53,8 @@ class SignUpPageViewController: UIViewController {
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
             
             // Add a new document
-            self.db.collection("users").document(username).setData([
-                "name": name,
-                "surname": surname,
-            ]) { err in
-                if let err = err {
-                        print("Error writing document: \(err)")
-                    } else {
-                        print("Document successfully written!")
-                    }
-            }
+            let userObject = User(name: name, surname: surname, email: username, imageName: "", takenCoursesList: [])
+            self.userDataSource.addUser(userObject: userObject)
         })
     }
     
