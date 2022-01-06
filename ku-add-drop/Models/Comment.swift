@@ -8,9 +8,16 @@
 import Foundation
 
 struct Comment: Codable {
-    let commentId: String
-    let courseName: String
-    let ownerEmail: String
-    let content: String
-    let courseScore: Int
+    var courseName: String
+    var owner: String
+    var content: String
+    var courseScore: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case courseName
+        case owner
+        case content
+        case courseScore
+    }
 }
+

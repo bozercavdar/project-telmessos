@@ -9,9 +9,10 @@ import UIKit
 
 class CourseDetailViewController: UIViewController {
 
+    @IBOutlet weak var courseNameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //courseNameLabel.text = searchedCourseName!
         // Do any additional setup after loading the view.
     }
     

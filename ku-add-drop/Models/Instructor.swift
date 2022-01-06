@@ -8,9 +8,13 @@
 import Foundation
 
 struct Instructor: Codable {
-    let instructorId: String
-    let instructorName: String
-    let instructorSurname: String
-    let totalScore: [String:Int]
-    let totalRateAmount: [String:Int]
+    var instructorName: String
+    var totalScore: Int
+    var totalRateAmount: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case instructorName
+        case totalScore
+        case totalRateAmount
+    }
 }

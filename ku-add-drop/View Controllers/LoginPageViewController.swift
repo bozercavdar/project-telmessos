@@ -20,7 +20,21 @@ class LoginPageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func shortcut(_ sender: Any) {
+        FirebaseAuth.Auth.auth().signIn(withEmail: "bcavdar17@ku.edu.tr", password: "123456", completion: {result, error in
+            guard error == nil else {
+                print("wrong credentials")
+                return
+            }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
 
+            // This is to get the SceneDelegate object from your view controller
+            // then call the change root view controller function to change to main tab bar
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+        })
+    }
+    
     @IBAction func passwordViewAction(_ sender: Any) {
         if(iconClick == true){
             passwordLabel.isSecureTextEntry = false

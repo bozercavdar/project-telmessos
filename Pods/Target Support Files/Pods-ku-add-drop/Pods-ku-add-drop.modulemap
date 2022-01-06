@@ -1,0 +1,6 @@
+framework module Pods_ku_add_drop {
+  umbrella header "Pods-ku-add-drop-umbrella.h"
+
+  export *
+  module * { export * }
+}
