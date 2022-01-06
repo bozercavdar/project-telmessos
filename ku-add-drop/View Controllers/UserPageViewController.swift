@@ -66,9 +66,9 @@ class UserPageViewController: UIViewController {
                 fullName = name + " " + surname
 
                 completion(fullName)
-                //return "fullName"
             } else {
-                print("------------------ Error")
+                print("------------------ Error in getting name of the user")
+                completion(fullName)
             }
         })
 

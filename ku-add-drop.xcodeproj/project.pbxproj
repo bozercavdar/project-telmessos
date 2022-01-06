@@ -24,6 +24,12 @@
 		0F987873276F507E003AE4C3 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F987872276F507E003AE4C3 /* LoginPageViewController.swift */; };
 		0F9878AA276F72C0003AE4C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F9878A9276F72C0003AE4C3 /* GoogleService-Info.plist */; };
 		0FAA3BF9277088D000A25A82 /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAA3BF8277088D000A25A82 /* SignUpPageViewController.swift */; };
+		0FFB2C27278702480098B382 /* InstructorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB2C26278702480098B382 /* InstructorDataSource.swift */; };
+		0FFB2C292787028A0098B382 /* InstructorDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB2C282787028A0098B382 /* InstructorDataSourceDelegate.swift */; };
+		0FFB2C2B278706F80098B382 /* CommentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB2C2A278706F80098B382 /* CommentDataSource.swift */; };
+		0FFB2C2D278707030098B382 /* CommentDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB2C2C278707020098B382 /* CommentDataSourceDelegate.swift */; };
+		0FFB2C2F27872ADD0098B382 /* CourseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB2C2E27872ADD0098B382 /* CourseDataSource.swift */; };
+		0FFB2C3127872AF20098B382 /* CourseDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB2C3027872AF20098B382 /* CourseDataSourceDelegate.swift */; };
 		8A594A177C245FBFA92CE90A /* Pods_ku_add_drop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8E9CA2129C236B32C815D6 /* Pods_ku_add_drop.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +53,12 @@
 		0F987872276F507E003AE4C3 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		0F9878A9276F72C0003AE4C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0FAA3BF8277088D000A25A82 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
+		0FFB2C26278702480098B382 /* InstructorDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructorDataSource.swift; sourceTree = "<group>"; };
+		0FFB2C282787028A0098B382 /* InstructorDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructorDataSourceDelegate.swift; sourceTree = "<group>"; };
+		0FFB2C2A278706F80098B382 /* CommentDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDataSource.swift; sourceTree = "<group>"; };
+		0FFB2C2C278707020098B382 /* CommentDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDataSourceDelegate.swift; sourceTree = "<group>"; };
+		0FFB2C2E27872ADD0098B382 /* CourseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDataSource.swift; sourceTree = "<group>"; };
+		0FFB2C3027872AF20098B382 /* CourseDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDataSourceDelegate.swift; sourceTree = "<group>"; };
 		2475F7C1F4A3BFCE6126CD0A /* Pods-ku-add-drop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ku-add-drop.release.xcconfig"; path = "Target Support Files/Pods-ku-add-drop/Pods-ku-add-drop.release.xcconfig"; sourceTree = "<group>"; };
 		8AFE34E73231C57AE1918B1E /* Pods-ku-add-drop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ku-add-drop.debug.xcconfig"; path = "Target Support Files/Pods-ku-add-drop/Pods-ku-add-drop.debug.xcconfig"; sourceTree = "<group>"; };
 		EF8E9CA2129C236B32C815D6 /* Pods_ku_add_drop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ku_add_drop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,10 +79,10 @@
 		0F0EC0EB277081E10056B672 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0F0EC0F42770828A0056B672 /* Comment.swift */,
-				0F0EC0F62770828A0056B672 /* Course.swift */,
-				0F0EC0F72770828A0056B672 /* Instructor.swift */,
-				0F0EC0F52770828A0056B672 /* User.swift */,
+				0FFB2C25278701840098B382 /* User */,
+				0FFB2C24278701730098B382 /* Instructor */,
+				0FFB2C23278701640098B382 /* Course */,
+				0FFB2C22278700D40098B382 /* Comment */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,6 +141,44 @@
 			children = (
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		0FFB2C22278700D40098B382 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				0F0EC0F42770828A0056B672 /* Comment.swift */,
+				0FFB2C2A278706F80098B382 /* CommentDataSource.swift */,
+				0FFB2C2C278707020098B382 /* CommentDataSourceDelegate.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		0FFB2C23278701640098B382 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				0F0EC0F62770828A0056B672 /* Course.swift */,
+				0FFB2C2E27872ADD0098B382 /* CourseDataSource.swift */,
+				0FFB2C3027872AF20098B382 /* CourseDataSourceDelegate.swift */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
+		0FFB2C24278701730098B382 /* Instructor */ = {
+			isa = PBXGroup;
+			children = (
+				0F0EC0F72770828A0056B672 /* Instructor.swift */,
+				0FFB2C26278702480098B382 /* InstructorDataSource.swift */,
+				0FFB2C282787028A0098B382 /* InstructorDataSourceDelegate.swift */,
+			);
+			path = Instructor;
+			sourceTree = "<group>";
+		};
+		0FFB2C25278701840098B382 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				0F0EC0F52770828A0056B672 /* User.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		CDA80EC6B83EEF5791775C31 /* Pods */ = {
@@ -264,15 +314,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FFB2C2B278706F80098B382 /* CommentDataSource.swift in Sources */,
 				0F0EC0FA2770828A0056B672 /* Course.swift in Sources */,
 				0F0EC0FB2770828A0056B672 /* Instructor.swift in Sources */,
+				0FFB2C292787028A0098B382 /* InstructorDataSourceDelegate.swift in Sources */,
 				0F987873276F507E003AE4C3 /* LoginPageViewController.swift in Sources */,
 				0F0EC0F82770828A0056B672 /* Comment.swift in Sources */,
 				0F2692E32767BDD50064BDD1 /* AppDelegate.swift in Sources */,
 				0F3A4AFA277C9BCD00629DE3 /* AddCourseViewController.swift in Sources */,
 				0F1EBE6E276F4A4200886D8D /* UserPageViewController.swift in Sources */,
+				0FFB2C2D278707030098B382 /* CommentDataSourceDelegate.swift in Sources */,
+				0FFB2C3127872AF20098B382 /* CourseDataSourceDelegate.swift in Sources */,
 				0F05C313277CE0AE00E7FC7F /* AddCourseDetailPageViewController.swift in Sources */,
 				0F7C66352784C1FA0020D5B6 /* SearchPageViewController.swift in Sources */,
+				0FFB2C27278702480098B382 /* InstructorDataSource.swift in Sources */,
+				0FFB2C2F27872ADD0098B382 /* CourseDataSource.swift in Sources */,
 				0F2692E52767BDD50064BDD1 /* SceneDelegate.swift in Sources */,
 				0F0EC0E827707E3B0056B672 /* CourseDetailViewController.swift in Sources */,
 				0F0EC0F92770828A0056B672 /* User.swift in Sources */,
