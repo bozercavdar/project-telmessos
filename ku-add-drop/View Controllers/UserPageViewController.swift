@@ -18,23 +18,18 @@ class UserPageViewController: UIViewController {
     var courseName : String = ""
     let user = FirebaseAuth.Auth.auth().currentUser
     let db = Firestore.firestore()
-    
+    var userDataSource = UserDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let user = self.user{
-            getUsername(collection: "users", documentId: user.email!, completion: {username in
-                self.usernameLabel.text = username})
-        }
-        
-        
+        userDataSource.delegate = self
         // Do any additional setup after loading the view.
     }
     
-
-
-    
+    override func viewWillAppear(_ animated: Bool) {
+        userDataSource.getUsername(completion: {username in
+                self.usernameLabel.text = username})
+    }
     
     @IBAction func imageSelect(_ sender: Any) {
         let picker = UIImagePickerController()
@@ -54,25 +49,6 @@ class UserPageViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    func getUsername(collection: String, documentId: String, completion: @escaping (String?)->Void) {
-
-        var fullName = ""
-        let docRef = db.collection(collection).document(documentId)
-        docRef.getDocument (completion: { document, error  in
-            if let document = document, document.exists {
-                let data = document.data()
-                let name = data!["name"] as! String
-                let surname = data!["surname"] as! String
-                fullName = name + " " + surname
-
-                completion(fullName)
-            } else {
-                print("------------------ Error in getting name of the user")
-                completion(fullName)
-            }
-        })
-
-    }
     
 //    func uploadMedia(completion: @escaping (_ url: String?) -> Void) {
 //        let storageRef = FIRStorage.storage().reference().child("myImage.png")
@@ -88,24 +64,6 @@ class UserPageViewController: UIViewController {
 //           }
 //     }
         
-//        func addElement(collection: String, documentId: String, field: String, toBeAdded: String ){
-//            let docRef = db.collection(collection).document(documentId)
-//            var prevData : [String] = []
-//            docRef.getDocument { (document, error) in
-//                if let document = document, document.exists {
-//                    let data = document.data()
-//                    let fieldArray = data![field] as? Array ?? []
-//                    for element in fieldArray{
-//                        prevData.append(element as! String)
-//                    }
-//                    prevData.append(toBeAdded)
-//                    self.db.collection(collection).document(documentId).setData([ field: prevData], merge: true)
-//                } else {
-//                    self.db.collection(collection).document(documentId).setData([ field: [toBeAdded]], merge: true)
-//                }
-//            }
-//        }
-
 }
 
 extension UserPageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -115,4 +73,10 @@ extension UserPageViewController: UIImagePickerControllerDelegate, UINavigationC
         self.userImageView.image = image
         self.dismiss(animated: true)
     }
+}
+
+extension UserPageViewController: UserDataSourceDelegate {
+    func userNameLoaded() {
+    }
+    
 }
