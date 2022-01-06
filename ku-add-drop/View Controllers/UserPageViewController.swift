@@ -24,12 +24,16 @@ class UserPageViewController: UIViewController {
         super.viewDidLoad()
         
         if let user = self.user{
-            usernameLabel.text = user.email!
-            getUsername(collection: "users", documentId: user.email!)
+            getUsername(collection: "users", documentId: user.email!, completion: {username in
+                self.usernameLabel.text = username})
         }
+        
         
         // Do any additional setup after loading the view.
     }
+    
+
+
     
     
     @IBAction func imageSelect(_ sender: Any) {
@@ -50,23 +54,24 @@ class UserPageViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    func getUsername(collection: String, documentId: String) -> String? {
+    func getUsername(collection: String, documentId: String, completion: @escaping (String?)->Void) {
 
         var fullName = ""
         let docRef = db.collection(collection).document(documentId)
-        docRef.getDocument { (document, error) in
+        docRef.getDocument (completion: { document, error  in
             if let document = document, document.exists {
                 let data = document.data()
                 let name = data!["name"] as! String
                 let surname = data!["surname"] as! String
                 fullName = name + " " + surname
-                print(fullName)
-                
+
+                completion(fullName)
+                //return "fullName"
             } else {
                 print("------------------ Error")
             }
-        }
-        return fullName
+        })
+
     }
     
 //    func uploadMedia(completion: @escaping (_ url: String?) -> Void) {
