@@ -16,15 +16,16 @@ class CourseDataSource {
     let user = FirebaseAuth.Auth.auth().currentUser
     var instructorDataSource = InstructorDataSource()
     var commentDataSource = CommentDataSource()
+    var userDataSource = UserDataSource()
     
     init() {
         
     }
     
-    func updateElement(collection: String, documentId: String, courseName: String, instructorName: String, commentContent: String, courseRating: Int, instructorRating: Int) {
+    func updateCourse(documentId: String, courseName: String, instructorName: String, commentContent: String, courseRating: Int, instructorRating: Int) {
         var courseObject = Course(courseName: courseName, totalScore: 0, totalRateAmount: 0, commentsList:[], instList: [])
         var ownerID = ""
-        let docRef = db.collection(collection).document(documentId)
+        let docRef = db.collection("courses").document(documentId)
         docRef.getDocument { (document, error) in
             let result = Result {
               try document?.data(as: Course.self)
@@ -40,9 +41,10 @@ class CourseDataSource {
                     courseObject.instList = course.instList
                     print("---------------------Course: \(courseObject)")
                     
-                    self.addCourseHelper(collection: collection, documentId: documentId, courseName: courseName, instructorName: instructorName, commentContent: commentContent, courseRating: courseRating, instructorRating: instructorRating, ownerID: &ownerID, courseObject: &courseObject)
+                    self.addCourseHelper(documentId: documentId, courseName: courseName, instructorName: instructorName, commentContent: commentContent, courseRating: courseRating, instructorRating: instructorRating, ownerID: &ownerID, courseObject: &courseObject)
                 } else {
-                    self.addCourseHelper(collection: collection, documentId: documentId, courseName: courseName, instructorName: instructorName, commentContent: commentContent, courseRating: courseRating, instructorRating: instructorRating, ownerID: &ownerID, courseObject: &courseObject)
+                    print("--------------------Course does not exist. A new one is created")
+                    self.addCourseHelper(documentId: documentId, courseName: courseName, instructorName: instructorName, commentContent: commentContent, courseRating: courseRating, instructorRating: instructorRating, ownerID: &ownerID, courseObject: &courseObject)
                 }
             case .failure(let error):
                 // A `Course` value could not be initialized from the DocumentSnapshot.
@@ -53,17 +55,16 @@ class CourseDataSource {
 
     }
     
-    func addCourseHelper(collection: String, documentId: String, courseName: String, instructorName: String, commentContent: String, courseRating: Int, instructorRating: Int, ownerID: inout String, courseObject: inout Course){
+    func addCourseHelper(documentId: String, courseName: String, instructorName: String, commentContent: String, courseRating: Int, instructorRating: Int, ownerID: inout String, courseObject: inout Course){
         //add the instructor to instructor collection
-        self.instructorDataSource.updatedAddInstructor(collection: "instructors", documentId: instructorName, name: instructorName, inputScore: instructorRating)
+        self.instructorDataSource.updatedAddInstructor(documentId: instructorName, name: instructorName, inputScore: instructorRating)
         //add comment to comment collection
         if let user = self.user{
             ownerID = user.email!
-            self.commentDataSource.updatedAddComment(collection: "comments", owner: ownerID, courseName: courseName, content: commentContent, courseScore: courseRating)
+            self.commentDataSource.updatedAddComment(owner: ownerID, courseName: courseName, content: commentContent, courseScore: courseRating)
         }
-        // A nil value was successfully initialized from the DocumentSnapshot,
-        // or the DocumentSnapshot was nil.
-        print("--------------------Document does not exist")
+        //add course to user's takenCourses list
+        self.userDataSource.addCourse(courseName: courseName)
         
         //add corresponding instructor reference to the object
         let instRef = self.db.collection("instructors").document(instructorName)
@@ -96,7 +97,7 @@ class CourseDataSource {
         
         //update course object in the course collection
         do {
-            try self.db.collection(collection).document(documentId).setData(from: courseObject)
+            try self.db.collection("courses").document(documentId).setData(from: courseObject)
         } catch let error {
             print("Error writing city to Firestore: \(error)")
         }

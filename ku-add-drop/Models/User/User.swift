@@ -10,11 +10,11 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct User: Codable {
-    let name: String
-    let surname: String
-    let email: String
-    let imageName: String
-    let takenCoursesList: [DocumentReference]
+    var name: String
+    var surname: String
+    var email: String
+    var imageName: String
+    var takenCoursesList: [DocumentReference]
 
     enum CodingKeys: String, CodingKey {
         case name

@@ -18,9 +18,9 @@ class InstructorDataSource {
         
     }
     
-    func updatedAddInstructor(collection: String, documentId: String, name: String, inputScore: Int){
+    func updatedAddInstructor(documentId: String, name: String, inputScore: Int){
         var instructorObject = Instructor(instructorName: name, totalScore: 0, totalRateAmount: 0)
-        let docRef = db.collection(collection).document(documentId)
+        let docRef = db.collection("instructors").document(documentId)
         docRef.getDocument { (document, error) in
             let result = Result {
               try document?.data(as: Instructor.self)
@@ -37,7 +37,7 @@ class InstructorDataSource {
                     instructorObject.totalRateAmount += 1
                     
                     do {
-                        try self.db.collection(collection).document(documentId).setData(from: instructorObject)
+                        try self.db.collection("instructors").document(documentId).setData(from: instructorObject)
                     } catch let error {
                         print("Error writing instructor to Firestore: \(error)")
                     }
@@ -47,7 +47,7 @@ class InstructorDataSource {
                     instructorObject.totalScore += inputScore
                     instructorObject.totalRateAmount += 1
                     do {
-                        try self.db.collection(collection).document(documentId).setData(from: instructorObject)
+                        try self.db.collection("instructors").document(documentId).setData(from: instructorObject)
                     } catch let error {
                         print("Error writing instructor to Firestore: \(error)")
                     }

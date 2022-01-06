@@ -12,8 +12,7 @@ class AddCourseViewController: UIViewController {
 
     @IBOutlet weak var courseNameLabel: UITextField!
     var courseName : String = ""
-    let user = FirebaseAuth.Auth.auth().currentUser
-    let db = Firestore.firestore()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,13 +20,8 @@ class AddCourseViewController: UIViewController {
     }
     
     @IBAction func addCourse(_ sender: Any) {
-        if let user = user{
-            let documentId = user.email!
-            courseName = courseNameLabel.text!
-            addElement(collection: "users", documentId: documentId, field: "courses", toBeAdded: courseName)
-            
-            courseNameLabel.text = ""
-        }
+        courseName = courseNameLabel.text!
+        courseNameLabel.text = ""
     }
     
     
@@ -40,24 +34,6 @@ class AddCourseViewController: UIViewController {
         let courseDetailViewController = segue.destination as! AddCourseDetailPageViewController
         courseDetailViewController.addedCourseName = courseName
     }
-    
-    func addElement(collection: String, documentId: String, field: String, toBeAdded: String ){
-        let docRef = db.collection(collection).document(documentId)
-        var prevData : [String] = []
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let data = document.data()
-                let fieldArray = data![field] as? Array ?? []
-                for element in fieldArray{
-                    prevData.append(element as! String)
-                }
-                prevData.append(toBeAdded)
-                self.db.collection(collection).document(documentId).setData([ field: prevData], merge: true)
-            } else {
-                self.db.collection(collection).document(documentId).setData([ field: [toBeAdded]], merge: true)
-            }
-        }
-    }
-    
+        
 
 }

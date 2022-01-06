@@ -17,10 +17,10 @@ class CommentDataSource {
     init() {
     }
     
-    func updatedAddComment(collection: String, owner: String, courseName: String, content: String, courseScore: Int){
+    func updatedAddComment(owner: String, courseName: String, content: String, courseScore: Int){
         var commentObject = Comment(courseName: "", owner: "", content: "", courseScore: 0)
         let documentId = owner + "-" + courseName
-        let docRef = db.collection(collection).document(documentId)
+        let docRef = db.collection("comments").document(documentId)
         docRef.getDocument { (document, error) in
             let result = Result {
               try document?.data(as: Comment.self)
@@ -39,7 +39,7 @@ class CommentDataSource {
                     commentObject.courseScore = courseScore
                     
                     do {
-                        try self.db.collection(collection).document(documentId).setData(from: commentObject)
+                        try self.db.collection("comments").document(documentId).setData(from: commentObject)
                     } catch let error {
                         print("Error writing comment to Firestore: \(error)")
                     }
@@ -52,7 +52,7 @@ class CommentDataSource {
                     commentObject.courseScore = courseScore
                     
                     do {
-                        try self.db.collection(collection).document(documentId).setData(from: commentObject)
+                        try self.db.collection("comments").document(documentId).setData(from: commentObject)
                     } catch let error {
                         print("Error writing comment to Firestore: \(error)")
                     }
