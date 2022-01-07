@@ -16,11 +16,17 @@ class UserDataSource {
     var delegate: UserDataSourceDelegate?
     let user = FirebaseAuth.Auth.auth().currentUser
     var documentId = ""
-    
+    var userObject : User?
     init() {
         if let user = self.user{
             documentId = user.email!
         }
+        getUser(completion: {
+            user in self.userObject = user
+            DispatchQueue.main.async {
+                self.delegate?.userLoaded()
+            }
+        })
     }
     
     func getUsername(completion: @escaping (String?)->Void) {
@@ -99,5 +105,96 @@ class UserDataSource {
                 print("-------------------Error decoding user: \(error)")
             }
         }
+    }
+    
+//    func getCourseNumber(completion: @escaping (Int?)->Void) {
+//        let userDocRef = db.collection("users").document(documentId)
+//        userDocRef.getDocument(completion: { (document, error) in
+//            let result = Result {
+//              try document?.data(as: User.self)
+//            }
+//            switch result {
+//            case .success(let user):
+//                if let user = user {
+//                    completion(user.takenCoursesList.count)
+//                    DispatchQueue.main.async {
+//                        self.delegate?.courseCountLoaded()
+//                    }
+//                } else {
+//                    //impossible case
+//                    print("-------------------Error")
+//                }
+//            case .failure(let error):
+//                // A `User` value could not be initialized from the DocumentSnapshot.
+//                print("-------------------Error decoding user: \(error)")
+//            }
+//        })
+//    }
+    
+    func getCourseNumber() -> Int {
+        DispatchQueue.main.async {
+            self.delegate?.courseCountLoaded()
+        }
+        if(userObject != nil) {
+             return userObject!.takenCoursesList.count
+        }else{
+            return 0
+        }
+        
+    }
+    
+//    func getCourseRefs(completion: @escaping (Array<DocumentReference>?)->Void) {
+//        let userDocRef = db.collection("users").document(documentId)
+//        userDocRef.getDocument(completion: { (document, error) in
+//            let result = Result {
+//              try document?.data(as: User.self)
+//            }
+//            switch result {
+//            case .success(let user):
+//                if let user = user {
+//                    completion(user.takenCoursesList)
+//                    DispatchQueue.main.async {
+//                        self.delegate?.courseRefListLoaded()
+//                    }
+//                } else {
+//                    //impossible case
+//                    print("-------------------Error")
+//                }
+//            case .failure(let error):
+//                // A `User` value could not be initialized from the DocumentSnapshot.
+//                print("-------------------Error decoding user: \(error)")
+//            }
+//        })
+//    }
+    
+    func getCourseRefs() -> Array<DocumentReference>{
+        DispatchQueue.main.async {
+            self.delegate?.courseRefListLoaded()
+        }
+        if(userObject != nil) {
+            return userObject!.takenCoursesList
+        }else{
+            return []
+        }
+    }
+    func getUser(completion: @escaping (User) -> Void){
+        let userDocRef = db.collection("users").document(documentId)
+        userDocRef.getDocument(completion: { (document, error) in
+            let result = Result {
+              try document?.data(as: User.self)
+            }
+            switch result {
+            case .success(let user):
+                if let user = user {
+                    completion(user)
+                } else {
+                    //impossible case
+                    print("-------------------Error")
+                }
+            case .failure(let error):
+                // A `User` value could not be initialized from the DocumentSnapshot.
+                print("-------------------Error decoding user: \(error)")
+            }
+        })
     }
 }

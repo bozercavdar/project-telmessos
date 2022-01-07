@@ -103,5 +103,25 @@ class CourseDataSource {
         }
     }
     
+    func getCourseNameWithReference(docRef: DocumentReference ,completion: @escaping (String?)->Void) {
+        docRef.getDocument(completion: { (document, error) in
+            let result = Result {
+              try document?.data(as: Course.self)
+            }
+            switch result {
+            case .success(let course):
+                if let course = course {
+                    completion(course.courseName)
+                } else {
+                    //impossible case
+                    print("-------------------Error")
+                }
+            case .failure(let error):
+                // A `User` value could not be initialized from the DocumentSnapshot.
+                print("-------------------Error decoding user: \(error)")
+            }
+        })
+    }
+    
     
 }

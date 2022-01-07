@@ -21,6 +21,7 @@
 		0F2692EF2767BDD60064BDD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F2692ED2767BDD60064BDD1 /* LaunchScreen.storyboard */; };
 		0F3A4AFA277C9BCD00629DE3 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3A4AF9277C9BCD00629DE3 /* AddCourseViewController.swift */; };
 		0F7C66352784C1FA0020D5B6 /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7C66342784C1FA0020D5B6 /* SearchPageViewController.swift */; };
+		0F9303AB2788AA26002A0089 /* ProfileCourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9303AA2788AA26002A0089 /* ProfileCourseTableViewCell.swift */; };
 		0F987873276F507E003AE4C3 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F987872276F507E003AE4C3 /* LoginPageViewController.swift */; };
 		0F9878AA276F72C0003AE4C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F9878A9276F72C0003AE4C3 /* GoogleService-Info.plist */; };
 		0FAA3BF9277088D000A25A82 /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAA3BF8277088D000A25A82 /* SignUpPageViewController.swift */; };
@@ -52,6 +53,7 @@
 		0F2692F02767BDD60064BDD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F3A4AF9277C9BCD00629DE3 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
 		0F7C66342784C1FA0020D5B6 /* SearchPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
+		0F9303AA2788AA26002A0089 /* ProfileCourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCourseTableViewCell.swift; sourceTree = "<group>"; };
 		0F987872276F507E003AE4C3 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		0F9878A9276F72C0003AE4C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0FAA3BF8277088D000A25A82 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
@@ -112,7 +114,7 @@
 		0F2692E12767BDD50064BDD1 /* ku-add-drop */ = {
 			isa = PBXGroup;
 			children = (
-				0FAA3BF72770869500A25A82 /* Cells */,
+				0F9303A92788A9FC002A0089 /* Cells */,
 				0F0EC0EB277081E10056B672 /* Models */,
 				0F9878A9276F72C0003AE4C3 /* GoogleService-Info.plist */,
 				0F98786F276F4AC9003AE4C3 /* View Controllers */,
@@ -124,6 +126,14 @@
 				0F2692F02767BDD60064BDD1 /* Info.plist */,
 			);
 			path = "ku-add-drop";
+			sourceTree = "<group>";
+		};
+		0F9303A92788A9FC002A0089 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0F9303AA2788AA26002A0089 /* ProfileCourseTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		0F98786F276F4AC9003AE4C3 /* View Controllers */ = {
@@ -138,13 +148,6 @@
 				0F7C66342784C1FA0020D5B6 /* SearchPageViewController.swift */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		0FAA3BF72770869500A25A82 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		0FFB2C22278700D40098B382 /* Comment */ = {
@@ -322,6 +325,7 @@
 			files = (
 				0FFB2C2B278706F80098B382 /* CommentDataSource.swift in Sources */,
 				0F0EC0FA2770828A0056B672 /* Course.swift in Sources */,
+				0F9303AB2788AA26002A0089 /* ProfileCourseTableViewCell.swift in Sources */,
 				0F0EC0FB2770828A0056B672 /* Instructor.swift in Sources */,
 				0FFB2C292787028A0098B382 /* InstructorDataSourceDelegate.swift in Sources */,
 				0F987873276F507E003AE4C3 /* LoginPageViewController.swift in Sources */,

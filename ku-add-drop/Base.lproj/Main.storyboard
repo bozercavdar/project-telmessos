@@ -354,15 +354,15 @@
                                 <rect key="frame" x="25" y="434.5" width="364" height="353.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mHx-CJ-NAz">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCourseCell" id="mHx-CJ-NAz" customClass="ProfileCourseTableViewCell" customModule="ku_add_drop" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="364" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mHx-CJ-NAz" id="BTJ-GN-QFb">
                                             <rect key="frame" x="0.0" y="0.0" width="364" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMP319B" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovp-k4-xdp">
-                                                    <rect key="frame" x="10" y="11.5" width="89" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovp-k4-xdp">
+                                                    <rect key="frame" x="10" y="11.5" width="74.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -373,8 +373,15 @@
                                                 <constraint firstItem="Ovp-k4-xdp" firstAttribute="centerY" secondItem="BTJ-GN-QFb" secondAttribute="centerY" id="v5r-vA-XA4"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="courseNameLabel" destination="Ovp-k4-xdp" id="0O8-aV-rKj"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="dNr-zD-7qU" id="Z25-7H-FhE"/>
+                                    <outlet property="delegate" destination="dNr-zD-7qU" id="eBl-xG-XeQ"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFu-LJ-9kz">
                                 <rect key="frame" x="184" y="353.5" width="46" height="30"/>
@@ -430,6 +437,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9cm-aW-O6K"/>
                     <connections>
+                        <outlet property="courseTableView" destination="ge8-QD-HYc" id="Zbw-sJ-WRW"/>
                         <outlet property="userImageView" destination="fV0-HH-5oW" id="55Y-Dx-aoQ"/>
                         <outlet property="usernameLabel" destination="3H6-2L-Vbf" id="Xgn-B9-bIM"/>
                     </connections>

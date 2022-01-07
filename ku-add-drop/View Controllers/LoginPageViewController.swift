@@ -21,7 +21,7 @@ class LoginPageViewController: UIViewController {
     }
     
     @IBAction func shortcut(_ sender: Any) {
-        FirebaseAuth.Auth.auth().signIn(withEmail: "bcavdar17@ku.edu.tr", password: "123456", completion: {result, error in
+        FirebaseAuth.Auth.auth().signIn(withEmail: "fbulgur17@ku.edu.tr", password: "123456", completion: {result, error in
             guard error == nil else {
                 print("wrong credentials")
                 return

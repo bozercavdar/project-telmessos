@@ -7,21 +7,24 @@
 
 import UIKit
 import FirebaseFirestore
-import FirebaseAuth
 import FirebaseFirestoreSwift
+import grpc
 
 class UserPageViewController: UIViewController {
 
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var courseTableView: UITableView!
     
-    var courseName : String = ""
-    let user = FirebaseAuth.Auth.auth().currentUser
-    let db = Firestore.firestore()
     var userDataSource = UserDataSource()
+    var courseDataSource = CourseDataSource()
+    var numberOfRows = 0
+    var courseRefArray : Array<DocumentReference> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        numberOfRows = userDataSource.getCourseNumber()
+        courseRefArray = userDataSource.getCourseRefs()
         userDataSource.delegate = self
         // Do any additional setup after loading the view.
     }
@@ -37,7 +40,37 @@ class UserPageViewController: UIViewController {
         picker.delegate = self
         picker.allowsEditing = true
         self.present(picker, animated: true)
+    }
+    
+//    func getCourseRefArray(completion: @escaping (Array<DocumentReference>?)->Void) {
+//        userDataSource.getCourseRefs(completion: {courseRefArray in
+//            completion(courseRefArray)})
+//    }
         
+    
+    
+//    func getRealIndex(indexPath: IndexPath, completion: @escaping (Int?)->Void) {
+//        userDataSource.getCourseNumber(completion: {count in
+//            if (count! == 0) {
+//                completion(0)
+//            }
+//            let realIndex = indexPath.row.quotientAndRemainder(dividingBy: count!).remainder
+//            completion(realIndex)
+//        })
+//    }
+    
+    func getRealIndex(indexPath: IndexPath) -> Int {
+        if (numberOfRows == 0) {
+            return 0;
+        }
+        let realIndex = indexPath.row.quotientAndRemainder(dividingBy: numberOfRows).remainder
+        return realIndex
+    }
+    
+    func refreshTable(){
+        numberOfRows = userDataSource.getCourseNumber()
+        courseRefArray = userDataSource.getCourseRefs()
+        courseTableView.reloadData()
     }
     
     /*
@@ -76,7 +109,40 @@ extension UserPageViewController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 extension UserPageViewController: UserDataSourceDelegate {
+    func userLoaded() {
+        numberOfRows = userDataSource.getCourseNumber()
+        courseRefArray = userDataSource.getCourseRefs()
+        courseTableView.reloadData()
+    }
+    
+    func courseCountLoaded() {
+    }
+    
+    func courseRefListLoaded() {
+    }
+    
     func userNameLoaded() {
     }
+    
+}
+
+extension UserPageViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return numberOfRows
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCourseCell", for: indexPath) as! ProfileCourseTableViewCell
+        let index = getRealIndex(indexPath: indexPath)
+        let array = courseRefArray
+        self.courseDataSource.getCourseNameWithReference(docRef: array[index], completion: {name in
+            cell.courseNameLabel.text = name})
+        return cell
+    }
+    
     
 }

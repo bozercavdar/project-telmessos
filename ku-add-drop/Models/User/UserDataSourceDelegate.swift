@@ -9,4 +9,7 @@ import Foundation
 
 protocol UserDataSourceDelegate {
     func userNameLoaded()
+    func courseRefListLoaded()
+    func courseCountLoaded()
+    func userLoaded()
 }
