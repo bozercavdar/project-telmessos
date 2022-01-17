@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+protocol CourseDataSourceDelegate {
+    func commentRefListLoaded()
+    func commentCountLoaded()
+
+}

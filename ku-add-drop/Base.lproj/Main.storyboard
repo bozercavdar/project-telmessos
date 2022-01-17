@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jo3-p2-U90">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jo3-p2-U90">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -774,7 +774,7 @@
                                 <rect key="frame" x="25" y="190" width="364" height="598"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="66" id="IWp-K4-st1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseInstructorCell" rowHeight="66" id="IWp-K4-st1" customClass="CourseInstructorTableViewCell" customModule="ku_add_drop" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="364" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IWp-K4-st1" id="a8e-wA-2lW">
@@ -810,8 +810,12 @@
                                                 <constraint firstItem="QM0-g6-RbB" firstAttribute="leading" secondItem="qb0-X2-7mY" secondAttribute="trailing" constant="10" id="ueE-Sd-xRf"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="InstructorNameLabel" destination="QM0-g6-RbB" id="Cgb-O7-LRO"/>
+                                            <outlet property="InstructorScoreLabel" destination="QdE-kO-u1D" id="s9k-fV-o8m"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="194" id="D1J-6f-Ytk">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseCommentCell" rowHeight="194" id="D1J-6f-Ytk" customClass="CommentTableViewCell" customModule="ku_add_drop" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="110.5" width="364" height="194"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D1J-6f-Ytk" id="3dK-tO-bYW">
@@ -852,6 +856,11 @@
                                                 <constraint firstAttribute="trailing" secondItem="J6o-JC-xmA" secondAttribute="trailing" constant="10" id="sqt-ts-FVp"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="CommentContentLabel" destination="hAE-fW-V7c" id="sQt-se-9a6"/>
+                                            <outlet property="GivenCourseScoreLabel" destination="J6o-JC-xmA" id="XwT-4a-Ea9"/>
+                                            <outlet property="UserNameLabel" destination="0VE-wi-0md" id="M7T-HR-7sh"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

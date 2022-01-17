@@ -197,4 +197,14 @@ class UserDataSource {
             }
         })
     }
+    
+    func refreshUser(){
+        getUser(completion: {
+            user in self.userObject = user
+            DispatchQueue.main.async {
+                self.delegate?.userLoaded()
+            }
+        })
+        print("------------------in refresh user")
+    }
 }

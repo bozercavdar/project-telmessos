@@ -32,6 +32,7 @@ class UserPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         userDataSource.getUsername(completion: {username in
                 self.usernameLabel.text = username})
+        userDataSource.refreshUser()
     }
     
     @IBAction func imageSelect(_ sender: Any) {
@@ -113,6 +114,7 @@ extension UserPageViewController: UserDataSourceDelegate {
         numberOfRows = userDataSource.getCourseNumber()
         courseRefArray = userDataSource.getCourseRefs()
         courseTableView.reloadData()
+        print("---------------- Reloaded")
     }
     
     func courseCountLoaded() {

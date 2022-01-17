@@ -6,12 +6,27 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+import grpc
 
 class CourseDetailViewController: UIViewController {
 
     @IBOutlet weak var courseNameLabel: UILabel!
+    
+    
+    var commentDataSource = CommentDataSource()
+    var courseDataSource = CourseDataSource()
+    var instructorDataSource = InstructorDataSource()
+    var numberOfRows = 0
+    var commentRefArray : Array<DocumentReference> = []
+    var instructorRefArray : Array<DocumentReference> = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        numberOfRows = courseDataSource.getCommentNumber()
+        commentRefArray = courseDataSource.getCommentRefs()
+   //     commentDataSource.delegate = self
         //courseNameLabel.text = searchedCourseName!
         // Do any additional setup after loading the view.
     }

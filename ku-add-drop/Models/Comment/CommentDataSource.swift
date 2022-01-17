@@ -64,4 +64,27 @@ class CommentDataSource {
         }
     }
     
+    
+    func getCommentWithReference(docRef: DocumentReference ,completion: @escaping (String?)->Void) {
+        docRef.getDocument(completion: { (document, error) in
+            let result = Result {
+              try document?.data(as: Comment.self)
+            }
+            switch result {
+            case .success(let comment):
+                if let comment = comment {
+                    completion(comment.content)
+                } else {
+                    //impossible case
+                    print("-------------------Error")
+                }
+            case .failure(let error):
+                // A `User` value could not be initialized from the DocumentSnapshot.
+                print("-------------------Error decoding user: \(error)")
+            }
+        })
+    }
+    
+
+    
 }

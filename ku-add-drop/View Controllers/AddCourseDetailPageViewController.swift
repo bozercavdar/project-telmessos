@@ -26,6 +26,7 @@ class AddCourseDetailPageViewController: UIViewController {
     var addedCourseName: String?
     let user = FirebaseAuth.Auth.auth().currentUser
     var courseDataSource = CourseDataSource()
+    var userDataSource = UserDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,6 @@ class AddCourseDetailPageViewController: UIViewController {
         let instructorRating = round(instructorRatingSlider.value * 10) / 10.0
 
         courseDataSource.updateCourse(documentId: courseName, courseName: courseName, instructorName: instructorName, commentContent: commentContent, courseRating: Int(courseRating), instructorRating: Int(instructorRating))
-        
         
     }
     

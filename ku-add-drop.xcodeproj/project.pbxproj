@@ -24,6 +24,8 @@
 		0F9303AB2788AA26002A0089 /* ProfileCourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9303AA2788AA26002A0089 /* ProfileCourseTableViewCell.swift */; };
 		0F987873276F507E003AE4C3 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F987872276F507E003AE4C3 /* LoginPageViewController.swift */; };
 		0F9878AA276F72C0003AE4C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F9878A9276F72C0003AE4C3 /* GoogleService-Info.plist */; };
+		0FA3BFD92795A3AD002910B1 /* CourseInstructorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3BFD82795A3AD002910B1 /* CourseInstructorTableViewCell.swift */; };
+		0FA3BFDB2795A41D002910B1 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3BFDA2795A41D002910B1 /* CommentTableViewCell.swift */; };
 		0FAA3BF9277088D000A25A82 /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAA3BF8277088D000A25A82 /* SignUpPageViewController.swift */; };
 		0FFB2C27278702480098B382 /* InstructorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB2C26278702480098B382 /* InstructorDataSource.swift */; };
 		0FFB2C292787028A0098B382 /* InstructorDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB2C282787028A0098B382 /* InstructorDataSourceDelegate.swift */; };
@@ -56,6 +58,8 @@
 		0F9303AA2788AA26002A0089 /* ProfileCourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCourseTableViewCell.swift; sourceTree = "<group>"; };
 		0F987872276F507E003AE4C3 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		0F9878A9276F72C0003AE4C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0FA3BFD82795A3AD002910B1 /* CourseInstructorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInstructorTableViewCell.swift; sourceTree = "<group>"; };
+		0FA3BFDA2795A41D002910B1 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		0FAA3BF8277088D000A25A82 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
 		0FFB2C26278702480098B382 /* InstructorDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructorDataSource.swift; sourceTree = "<group>"; };
 		0FFB2C282787028A0098B382 /* InstructorDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructorDataSourceDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				0F9303AA2788AA26002A0089 /* ProfileCourseTableViewCell.swift */,
+				0FA3BFD82795A3AD002910B1 /* CourseInstructorTableViewCell.swift */,
+				0FA3BFDA2795A41D002910B1 /* CommentTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -342,8 +348,10 @@
 				0FFB2C27278702480098B382 /* InstructorDataSource.swift in Sources */,
 				0FFB2C2F27872ADD0098B382 /* CourseDataSource.swift in Sources */,
 				0F2692E52767BDD50064BDD1 /* SceneDelegate.swift in Sources */,
+				0FA3BFDB2795A41D002910B1 /* CommentTableViewCell.swift in Sources */,
 				0F0EC0E827707E3B0056B672 /* CourseDetailViewController.swift in Sources */,
 				0F0EC0F92770828A0056B672 /* User.swift in Sources */,
+				0FA3BFD92795A3AD002910B1 /* CourseInstructorTableViewCell.swift in Sources */,
 				0FAA3BF9277088D000A25A82 /* SignUpPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
