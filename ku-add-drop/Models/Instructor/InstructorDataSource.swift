@@ -58,4 +58,24 @@ class InstructorDataSource {
             }
         }
     }
+    
+    func getInstructorWithReference(docRef: DocumentReference ,completion: @escaping (String?)->Void) {
+        docRef.getDocument(completion: { (document, error) in
+            let result = Result {
+              try document?.data(as: Instructor.self)
+            }
+            switch result {
+            case .success(let instructor):
+                if let instructor = instructor {
+                    completion(instructor.instructorName)
+                } else {
+                    //impossible case
+                    print("-------------------Error")
+                }
+            case .failure(let error):
+                // A `User` value could not be initialized from the DocumentSnapshot.
+                print("-------------------Error decoding user: \(error)")
+            }
+        })
+    }
 }

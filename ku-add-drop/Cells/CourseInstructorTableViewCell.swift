@@ -9,9 +9,9 @@ import UIKit
 
 class CourseInstructorTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var InstructorNameLabel: UILabel!
+    @IBOutlet weak var instructorNameLabel: UILabel!
     
-    @IBOutlet weak var InstructorScoreLabel: UILabel!
+    @IBOutlet weak var instructorScoreLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

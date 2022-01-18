@@ -9,11 +9,11 @@ import UIKit
 
 class CommentTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var UserNameLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     
-    @IBOutlet weak var GivenCourseScoreLabel: UILabel!
+    @IBOutlet weak var givenCourseScoreLabel: UILabel!
     
-    @IBOutlet weak var CommentContentLabel: UITextView!
+    @IBOutlet weak var commentContentLabel: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

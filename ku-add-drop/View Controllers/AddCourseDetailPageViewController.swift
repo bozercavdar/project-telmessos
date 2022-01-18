@@ -42,7 +42,10 @@ class AddCourseDetailPageViewController: UIViewController {
         let courseRating = round(courseRatingSlider.value * 10) / 10.0
         let instructorRating = round(instructorRatingSlider.value * 10) / 10.0
 
-        courseDataSource.updateCourse(documentId: courseName, courseName: courseName, instructorName: instructorName, commentContent: commentContent, courseRating: Int(courseRating), instructorRating: Int(instructorRating))
+        courseDataSource.updateCourse(documentId: courseName, courseName: courseName, instructorName: instructorName, commentContent: commentContent, courseRating: Int(courseRating), instructorRating: Int(instructorRating), completion: {msg in
+            print(msg)
+            self.userDataSource.refreshUser()
+        })
         
     }
     

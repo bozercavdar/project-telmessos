@@ -26,13 +26,13 @@ class UserPageViewController: UIViewController {
         numberOfRows = userDataSource.getCourseNumber()
         courseRefArray = userDataSource.getCourseRefs()
         userDataSource.delegate = self
+        userDataSource.refreshUser()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         userDataSource.getUsername(completion: {username in
                 self.usernameLabel.text = username})
-        userDataSource.refreshUser()
     }
     
     @IBAction func imageSelect(_ sender: Any) {

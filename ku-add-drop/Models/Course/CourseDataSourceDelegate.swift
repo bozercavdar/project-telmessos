@@ -10,5 +10,7 @@ import Foundation
 protocol CourseDataSourceDelegate {
     func commentRefListLoaded()
     func commentCountLoaded()
+    func courseLoaded()
+    func instructorCountLoaded()
 
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jo3-p2-U90">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jo3-p2-U90">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -811,25 +811,25 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="InstructorNameLabel" destination="QM0-g6-RbB" id="Cgb-O7-LRO"/>
-                                            <outlet property="InstructorScoreLabel" destination="QdE-kO-u1D" id="s9k-fV-o8m"/>
+                                            <outlet property="instructorNameLabel" destination="QM0-g6-RbB" id="Cgb-O7-LRO"/>
+                                            <outlet property="instructorScoreLabel" destination="QdE-kO-u1D" id="s9k-fV-o8m"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseCommentCell" rowHeight="194" id="D1J-6f-Ytk" customClass="CommentTableViewCell" customModule="ku_add_drop" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="110.5" width="364" height="194"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseCommentCell" rowHeight="170" id="D1J-6f-Ytk" customClass="CommentTableViewCell" customModule="ku_add_drop" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="110.5" width="364" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D1J-6f-Ytk" id="3dK-tO-bYW">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="194"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Murat Han Aydoğan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VE-wi-0md">
-                                                    <rect key="frame" x="10" y="10" width="151" height="21"/>
+                                                    <rect key="frame" x="10" y="10" width="151" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAE-fW-V7c">
-                                                    <rect key="frame" x="10" y="56" width="344" height="128"/>
+                                                    <rect key="frame" x="10" y="55.5" width="344" height="104.5"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
                                                     <color key="textColor" systemColor="labelColor"/>
@@ -837,7 +837,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4/5 ⭐️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6o-JC-xmA">
-                                                    <rect key="frame" x="301" y="10" width="53" height="21"/>
+                                                    <rect key="frame" x="301" y="10" width="53" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -857,12 +857,16 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="CommentContentLabel" destination="hAE-fW-V7c" id="sQt-se-9a6"/>
-                                            <outlet property="GivenCourseScoreLabel" destination="J6o-JC-xmA" id="XwT-4a-Ea9"/>
-                                            <outlet property="UserNameLabel" destination="0VE-wi-0md" id="M7T-HR-7sh"/>
+                                            <outlet property="commentContentLabel" destination="hAE-fW-V7c" id="sQt-se-9a6"/>
+                                            <outlet property="givenCourseScoreLabel" destination="J6o-JC-xmA" id="XwT-4a-Ea9"/>
+                                            <outlet property="userNameLabel" destination="0VE-wi-0md" id="M7T-HR-7sh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="h4M-mV-9y9" id="piO-Zd-BIF"/>
+                                    <outlet property="delegate" destination="h4M-mV-9y9" id="y67-Zq-dcl"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qqf-Ck-zjf"/>
@@ -882,6 +886,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="maC-rH-Vt8"/>
                     <connections>
+                        <outlet property="commentTableView" destination="aPY-hA-LS8" id="8Vf-Xy-Z2U"/>
                         <outlet property="courseNameLabel" destination="6ET-UZ-A6x" id="zJh-dS-NJV"/>
                     </connections>
                 </viewController>

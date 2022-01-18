@@ -24,26 +24,15 @@ class SearchPageViewController: UIViewController {
     }
     
     @IBAction func searchClass(_ sender: Any) {
-        if let user = user{
-            courseName = courseNameField.text!
-        }
+        courseName = courseNameField.text!
     }
-    
-    /*
-    // MARK: - Navigation
+
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-    }
-    */
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        let courseDetailViewController = segue.destination as! AddCourseDetailPageViewController
-        courseDetailViewController.addedCourseName = courseName
+        let courseSearchViewController = segue.destination as! CourseDetailViewController
+        courseSearchViewController.searchedCourse = courseNameField.text!
     }
 }

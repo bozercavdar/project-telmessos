@@ -21,12 +21,12 @@ class UserDataSource {
         if let user = self.user{
             documentId = user.email!
         }
-        getUser(completion: {
-            user in self.userObject = user
-            DispatchQueue.main.async {
-                self.delegate?.userLoaded()
-            }
-        })
+//        getUser(completion: {
+//            user in self.userObject = user
+//            DispatchQueue.main.async {
+//                self.delegate?.userLoaded()
+//            }
+//        })
     }
     
     func getUsername(completion: @escaping (String?)->Void) {
@@ -205,6 +205,6 @@ class UserDataSource {
                 self.delegate?.userLoaded()
             }
         })
-        print("------------------in refresh user")
+       
     }
 }

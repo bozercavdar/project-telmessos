@@ -20,10 +20,10 @@ class CourseDataSource {
     var courseObject : Course?
     
     init() {
-        
+
     }
     
-    func updateCourse(documentId: String, courseName: String, instructorName: String, commentContent: String, courseRating: Int, instructorRating: Int) {
+    func updateCourse(documentId: String, courseName: String, instructorName: String, commentContent: String, courseRating: Int, instructorRating: Int, completion: @escaping (String)->Void) {
         var courseObject = Course(courseName: courseName, totalScore: 0, totalRateAmount: 0, commentsList:[], instList: [])
         var ownerID = ""
         let docRef = db.collection("courses").document(documentId)
@@ -43,9 +43,11 @@ class CourseDataSource {
                     print("---------------------Course: \(courseObject)")
                     
                     self.addCourseHelper(documentId: documentId, courseName: courseName, instructorName: instructorName, commentContent: commentContent, courseRating: courseRating, instructorRating: instructorRating, ownerID: &ownerID, courseObject: &courseObject)
+                    completion("------------ UpdateCourseComplete")
                 } else {
                     print("--------------------Course does not exist. A new one is created")
                     self.addCourseHelper(documentId: documentId, courseName: courseName, instructorName: instructorName, commentContent: commentContent, courseRating: courseRating, instructorRating: instructorRating, ownerID: &ownerID, courseObject: &courseObject)
+                    completion("------------ UpdateCourseComplete")
                 }
                 
             case .failure(let error):
@@ -99,7 +101,8 @@ class CourseDataSource {
         
         //update course object in the course collection
         do {
-            try self.db.collection("courses").document(documentId).setData(from: courseObject)
+           try self.db.collection("courses").document(documentId).setData(from: courseObject)
+
         } catch let error {
             print("Error writing course to Firestore: \(error)")
         }
@@ -125,6 +128,7 @@ class CourseDataSource {
         })
     }
     
+   // for comments
     func getCommentNumber() -> Int {
         DispatchQueue.main.async {
             self.delegate?.commentCountLoaded()
@@ -146,6 +150,30 @@ class CourseDataSource {
             return []
         }
     }
+    
+    // for instructors
+    func getInstructorNumber() -> Int {
+        DispatchQueue.main.async {
+            self.delegate?.instructorCountLoaded()
+        }
+        if(courseObject != nil) {
+             return courseObject!.instList.count
+        }else{
+            return 0
+        }
+    }
+    
+    func getInstructorRefs() -> Array<DocumentReference>{
+        DispatchQueue.main.async {
+            self.delegate?.commentRefListLoaded()
+        }
+        if(courseObject != nil) {
+            return courseObject!.instList
+        }else{
+            return []
+        }
+    }
+    
     func getCourse(documentRef:String, completion: @escaping (Course) -> Void){
         let courseDocRef = db.collection("courses").document(documentRef)
         courseDocRef.getDocument(completion: { (document, error) in
@@ -167,5 +195,13 @@ class CourseDataSource {
         })
     }
     
+    func reloadCourse(documentRef: String)  {
+        getCourse(documentRef: documentRef, completion: {
+            course in self.courseObject = course
+            DispatchQueue.main.async {
+                self.delegate?.courseLoaded()
+            }
+        })
+    }
     
 }
