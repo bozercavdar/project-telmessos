@@ -205,6 +205,24 @@ class UserDataSource {
                 self.delegate?.userLoaded()
             }
         })
-       
+    }
+    
+    func getUsernameWithEmail(mail:String,completion: @escaping (String?)->Void) {
+        
+        var fullName = ""
+        let docRef = db.collection("users").document(mail)
+        docRef.getDocument (completion: { document, error  in
+            if let document = document, document.exists {
+                let data = document.data()
+                let name = data!["name"] as! String
+                let surname = data!["surname"] as! String
+                fullName = name + " " + surname
+                completion(fullName)
+            } else {
+                print("------------------ Error in getting name of the user")
+                completion(fullName)
+            }
+        })
+
     }
 }

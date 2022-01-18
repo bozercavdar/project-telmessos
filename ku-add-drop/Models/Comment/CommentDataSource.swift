@@ -13,7 +13,7 @@ import FirebaseFirestoreSwift
 class CommentDataSource {
     
     let db = Firestore.firestore()
-    
+    let userDataSource = UserDataSource()
     init() {
     }
     
@@ -65,7 +65,7 @@ class CommentDataSource {
     }
     
     
-    func getCommentWithReference(docRef: DocumentReference ,completion: @escaping (String?)->Void) {
+    func getCommentWithReference(docRef: DocumentReference ,completion: @escaping (String?, String?, Int?)->Void) {
         docRef.getDocument(completion: { (document, error) in
             let result = Result {
               try document?.data(as: Comment.self)
@@ -73,7 +73,10 @@ class CommentDataSource {
             switch result {
             case .success(let comment):
                 if let comment = comment {
-                    completion(comment.content)
+                    self.userDataSource.getUsernameWithEmail(mail: comment.owner, completion: { name in
+                        completion(comment.content, name, comment.courseScore)
+                    })
+                    
                 } else {
                     //impossible case
                     print("-------------------Error")

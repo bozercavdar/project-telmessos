@@ -204,4 +204,19 @@ class CourseDataSource {
         })
     }
     
+    func getCourseScore() -> Double {
+    
+        if(courseObject != nil) {
+            let score = courseObject?.totalScore as! Int
+            let rate = courseObject?.totalRateAmount as! Int
+            let value = Double(score)/Double(rate)
+            return round(value*10)/10.0
+            
+        }else{
+            return 0
+        }
+        
+        
+    }
+    
 }

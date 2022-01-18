@@ -14,6 +14,7 @@ class CourseDetailViewController: UIViewController {
 
     @IBOutlet weak var courseNameLabel: UILabel!
     
+    @IBOutlet weak var courseScoreLabel: UILabel!
     
     var commentDataSource = CommentDataSource()
     var courseDataSource = CourseDataSource()
@@ -38,7 +39,8 @@ class CourseDetailViewController: UIViewController {
         
         numberOfInstructorRows = courseDataSource.getInstructorNumber()
         instructorRefArray = courseDataSource.getInstructorRefs()
-
+        
+        
         courseNameLabel.text = searchedCourse!
         // Do any additional setup after loading the view.
     }
@@ -92,16 +94,21 @@ extension CourseDetailViewController: UITableViewDataSource {
             let instructorCell = tableView.dequeueReusableCell(withIdentifier: "CourseInstructorCell", for: indexPath) as! CourseInstructorTableViewCell
             let index = getInstructorRealIndex(indexPath: indexPath)
             let array = instructorRefArray
-            self.instructorDataSource.getInstructorWithReference(docRef: array[index], completion: {name in
-                instructorCell.instructorNameLabel.text = name})
+            self.instructorDataSource.getInstructorWithReference(docRef: array[index], completion: {name, score in
+                instructorCell.instructorNameLabel.text = name
+                instructorCell.instructorScoreLabel.text = "\(score!) ⭐️"
+            })
             return instructorCell
         }
         // return comment cell
         let commentCell = tableView.dequeueReusableCell(withIdentifier: "CourseCommentCell", for: indexPath) as! CommentTableViewCell
         let index = getCommentRealIndex(indexPath: indexPath)
         let array = commentRefArray
-        self.commentDataSource.getCommentWithReference(docRef: array[index], completion: {content in
-            commentCell.commentContentLabel.text = content!})
+        self.commentDataSource.getCommentWithReference(docRef: array[index], completion: {content, owner, score in
+            commentCell.commentContentLabel.text = content!
+            commentCell.userNameLabel.text = owner!
+            commentCell.givenCourseScoreLabel.text = "\(score!) ⭐️"
+        })
         return commentCell
     }
     
@@ -129,7 +136,8 @@ extension CourseDetailViewController: CourseDataSourceDelegate{
         
         numberOfInstructorRows = courseDataSource.getInstructorNumber()
         instructorRefArray = courseDataSource.getInstructorRefs()
-
+        
+        courseScoreLabel.text = "\(courseDataSource.getCourseScore()) ⭐️"
         commentTableView.reloadData()
     }
     

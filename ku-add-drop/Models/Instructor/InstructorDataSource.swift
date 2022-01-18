@@ -59,7 +59,7 @@ class InstructorDataSource {
         }
     }
     
-    func getInstructorWithReference(docRef: DocumentReference ,completion: @escaping (String?)->Void) {
+    func getInstructorWithReference(docRef: DocumentReference ,completion: @escaping (String?, Double?)->Void) {
         docRef.getDocument(completion: { (document, error) in
             let result = Result {
               try document?.data(as: Instructor.self)
@@ -67,7 +67,10 @@ class InstructorDataSource {
             switch result {
             case .success(let instructor):
                 if let instructor = instructor {
-                    completion(instructor.instructorName)
+                    let score = instructor.totalScore as! Int
+                    let rate = instructor.totalRateAmount as! Int
+                    let value = Double(score)/Double(rate)
+                    completion(instructor.instructorName, round(value*10)/10.0)
                 } else {
                     //impossible case
                     print("-------------------Error")

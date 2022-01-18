@@ -888,6 +888,7 @@
                     <connections>
                         <outlet property="commentTableView" destination="aPY-hA-LS8" id="8Vf-Xy-Z2U"/>
                         <outlet property="courseNameLabel" destination="6ET-UZ-A6x" id="zJh-dS-NJV"/>
+                        <outlet property="courseScoreLabel" destination="bkE-2M-Xad" id="6Oc-7E-G8m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="unZ-Gj-bLH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
