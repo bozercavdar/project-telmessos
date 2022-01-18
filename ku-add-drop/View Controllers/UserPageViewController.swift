@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseAuth
 import grpc
 
 class UserPageViewController: UIViewController {
@@ -43,7 +44,30 @@ class UserPageViewController: UIViewController {
         self.present(picker, animated: true)
     }
     
-//    func getCourseRefArray(completion: @escaping (Array<DocumentReference>?)->Void) {
+    @IBAction func logoutButton(_ sender: Any) {
+        do
+        {
+            try Auth.auth().signOut()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginPageViewController = storyboard.instantiateViewController(withIdentifier: "LoginPage") as! LoginPageViewController
+            //self.show(loginPageViewController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(loginPageViewController, animated: true)
+            
+            let loginNavigationController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
+
+            // This is to get the SceneDelegate object from your view controller
+            // then call the change root view controller function to change to main tab bar
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavigationController)
+            
+           // let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            //appDelegate.window?.rootViewController = loginPageViewController
+        }
+        catch let error as NSError
+        {
+            print(error.localizedDescription)
+        }
+    }
+    //    func getCourseRefArray(completion: @escaping (Array<DocumentReference>?)->Void) {
 //        userDataSource.getCourseRefs(completion: {courseRefArray in
 //            completion(courseRefArray)})
 //    }
@@ -114,7 +138,6 @@ extension UserPageViewController: UserDataSourceDelegate {
         numberOfRows = userDataSource.getCourseNumber()
         courseRefArray = userDataSource.getCourseRefs()
         courseTableView.reloadData()
-        print("---------------- Reloaded")
     }
     
     func courseCountLoaded() {

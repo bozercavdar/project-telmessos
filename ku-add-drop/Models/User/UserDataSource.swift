@@ -75,7 +75,6 @@ class UserDataSource {
                     userObject.email = user.email
                     userObject.imageName = user.imageName
                     userObject.takenCoursesList = user.takenCoursesList
-                    print("---------------------User: \(userObject)")
                     
                     //update takencourse list
                     let courseRef = self.db.collection("courses").document(courseName)

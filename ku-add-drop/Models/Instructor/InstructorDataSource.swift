@@ -31,7 +31,6 @@ class InstructorDataSource {
                     
                     instructorObject.totalScore = instructor.totalScore
                     instructorObject.totalRateAmount = instructor.totalRateAmount
-                    print("---------------------Instructor: \(instructorObject)")
                     
                     instructorObject.totalScore += inputScore
                     instructorObject.totalRateAmount += 1

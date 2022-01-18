@@ -45,6 +45,10 @@ class CourseDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        commentTableView.estimatedRowHeight = 200
+        commentTableView.rowHeight = UITableView.automaticDimension
+    }
     
     func getInstructorRealIndex(indexPath: IndexPath) -> Int {
         if (numberOfInstructorRows == 0) {
@@ -108,6 +112,7 @@ extension CourseDetailViewController: UITableViewDataSource {
             commentCell.commentContentLabel.text = content!
             commentCell.userNameLabel.text = owner!
             commentCell.givenCourseScoreLabel.text = "\(score!) ⭐️"
+            commentCell.commentContentLabel.isScrollEnabled = false
         })
         return commentCell
     }

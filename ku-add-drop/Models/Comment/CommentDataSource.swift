@@ -33,7 +33,6 @@ class CommentDataSource {
                     commentObject.owner = comment.owner
                     commentObject.content = comment.content
                     commentObject.courseScore = comment.courseScore
-                    print("---------------------Instructor: \(commentObject)")
                     
                     commentObject.content = content
                     commentObject.courseScore = courseScore

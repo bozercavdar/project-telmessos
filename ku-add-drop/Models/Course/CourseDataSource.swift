@@ -40,7 +40,6 @@ class CourseDataSource {
                     courseObject.totalRateAmount = course.totalRateAmount
                     courseObject.commentsList = course.commentsList
                     courseObject.instList = course.instList
-                    print("---------------------Course: \(courseObject)")
                     
                     self.addCourseHelper(documentId: documentId, courseName: courseName, instructorName: instructorName, commentContent: commentContent, courseRating: courseRating, instructorRating: instructorRating, ownerID: &ownerID, courseObject: &courseObject)
                     completion("------------ UpdateCourseComplete")
