@@ -7,22 +7,29 @@
 
 import UIKit
 import FirebaseFirestore
-import FirebaseAuth
 import FirebaseFirestoreSwift
+import FirebaseAuth
+import grpc
 
 class UserPageViewController: UIViewController {
 
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var courseTableView: UITableView!
     
-    var courseName : String = ""
-    let user = FirebaseAuth.Auth.auth().currentUser
-    let db = Firestore.firestore()
+    let userDefault = UserDefaults.standard
+    
     var userDataSource = UserDataSource()
+    var courseDataSource = CourseDataSource()
+    var numberOfRows = 0
+    var courseRefArray : Array<DocumentReference> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        numberOfRows = userDataSource.getCourseNumber()
+        courseRefArray = userDataSource.getCourseRefs()
         userDataSource.delegate = self
+        userDataSource.refreshUser()
         // Do any additional setup after loading the view.
     }
     
@@ -37,7 +44,42 @@ class UserPageViewController: UIViewController {
         picker.delegate = self
         picker.allowsEditing = true
         self.present(picker, animated: true)
-        
+    }
+    
+    @IBAction func logoutButton(_ sender: Any) {
+        do
+        {
+            try Auth.auth().signOut()
+            self.userDefault.set(false, forKey: "loggedIn")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginPageViewController = storyboard.instantiateViewController(withIdentifier: "LoginPage") as! LoginPageViewController
+            self.navigationController?.pushViewController(loginPageViewController, animated: true)
+            
+            let loginNavigationController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
+
+            // This is to get the SceneDelegate object from your view controller
+            // then call the change root view controller function to change to main tab bar
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavigationController)
+            
+        }
+        catch let error as NSError
+        {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getRealIndex(indexPath: IndexPath) -> Int {
+        if (numberOfRows == 0) {
+            return 0;
+        }
+        let realIndex = indexPath.row.quotientAndRemainder(dividingBy: numberOfRows).remainder
+        return realIndex
+    }
+    
+    func refreshTable(){
+        numberOfRows = userDataSource.getCourseNumber()
+        courseRefArray = userDataSource.getCourseRefs()
+        courseTableView.reloadData()
     }
     
     /*
@@ -50,19 +92,6 @@ class UserPageViewController: UIViewController {
     }
     */
     
-//    func uploadMedia(completion: @escaping (_ url: String?) -> Void) {
-//        let storageRef = FIRStorage.storage().reference().child("myImage.png")
-//        if let uploadData = UIImagePNGRepresentation(self.myImageView.image!) {
-//            storageRef.put(uploadData, metadata: nil) { (metadata, error) in
-//                if error != nil {
-//                    print("error")
-//                    completion(nil)
-//                } else {
-//                    completion((metadata?.downloadURL()?.absoluteString)!))
-//                    // your uploaded photo url.
-//                }
-//           }
-//     }
         
 }
 
@@ -76,7 +105,40 @@ extension UserPageViewController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 extension UserPageViewController: UserDataSourceDelegate {
+    func userLoaded() {
+        numberOfRows = userDataSource.getCourseNumber()
+        courseRefArray = userDataSource.getCourseRefs()
+        courseTableView.reloadData()
+    }
+    
+    func courseCountLoaded() {
+    }
+    
+    func courseRefListLoaded() {
+    }
+    
     func userNameLoaded() {
     }
+    
+}
+
+extension UserPageViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return numberOfRows
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCourseCell", for: indexPath) as! ProfileCourseTableViewCell
+        let index = getRealIndex(indexPath: indexPath)
+        let array = courseRefArray
+        self.courseDataSource.getCourseNameWithReference(docRef: array[index], completion: {name in
+            cell.courseNameLabel.text = name})
+        return cell
+    }
+    
     
 }

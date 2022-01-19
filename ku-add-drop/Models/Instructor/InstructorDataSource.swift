@@ -31,7 +31,6 @@ class InstructorDataSource {
                     
                     instructorObject.totalScore = instructor.totalScore
                     instructorObject.totalRateAmount = instructor.totalRateAmount
-                    print("---------------------Instructor: \(instructorObject)")
                     
                     instructorObject.totalScore += inputScore
                     instructorObject.totalRateAmount += 1
@@ -57,5 +56,28 @@ class InstructorDataSource {
                 print("-------------------Error decoding instructor: \(error)")
             }
         }
+    }
+    
+    func getInstructorWithReference(docRef: DocumentReference ,completion: @escaping (String?, Double?)->Void) {
+        docRef.getDocument(completion: { (document, error) in
+            let result = Result {
+              try document?.data(as: Instructor.self)
+            }
+            switch result {
+            case .success(let instructor):
+                if let instructor = instructor {
+                    let score = instructor.totalScore as! Int
+                    let rate = instructor.totalRateAmount as! Int
+                    let value = Double(score)/Double(rate)
+                    completion(instructor.instructorName, round(value*10)/10.0)
+                } else {
+                    //impossible case
+                    print("-------------------Error")
+                }
+            case .failure(let error):
+                // A `User` value could not be initialized from the DocumentSnapshot.
+                print("-------------------Error decoding user: \(error)")
+            }
+        })
     }
 }
