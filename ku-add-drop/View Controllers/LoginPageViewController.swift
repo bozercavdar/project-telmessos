@@ -13,12 +13,14 @@ class LoginPageViewController: UIViewController {
 
     let userDefault = UserDefaults.standard
     
+    @IBOutlet weak var curtainView: UIView!
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
     var iconClick = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        curtainView.isHidden = false
         // Do any additional setup after loading the view.
     }
     
@@ -39,6 +41,8 @@ class LoginPageViewController: UIViewController {
                 // then call the change root view controller function to change to main tab bar
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
             })
+        }else{
+            curtainView.isHidden = true
         }
     }
     
