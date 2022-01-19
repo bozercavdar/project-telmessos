@@ -15,6 +15,9 @@ class SignUpPageViewController: UIViewController {
     @IBOutlet weak var surnameLabel: UITextField!
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
+    
+    let userDefault = UserDefaults.standard
+    
     var iconClick = true
     let db = Firestore.firestore()
     let userDataSource = UserDataSource()
@@ -44,6 +47,10 @@ class SignUpPageViewController: UIViewController {
             guard error == nil else {
                 return
             }
+            
+            self.userDefault.set(true, forKey: "loggedIn")
+            self.userDefault.set(username, forKey: "username")
+            self.userDefault.set(password, forKey: "password")
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")

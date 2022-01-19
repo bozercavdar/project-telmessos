@@ -17,6 +17,8 @@ class UserPageViewController: UIViewController {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var courseTableView: UITableView!
     
+    let userDefault = UserDefaults.standard
+    
     var userDataSource = UserDataSource()
     var courseDataSource = CourseDataSource()
     var numberOfRows = 0
@@ -48,9 +50,9 @@ class UserPageViewController: UIViewController {
         do
         {
             try Auth.auth().signOut()
+            self.userDefault.set(false, forKey: "loggedIn")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginPageViewController = storyboard.instantiateViewController(withIdentifier: "LoginPage") as! LoginPageViewController
-            //self.show(loginPageViewController, animated: true, completion: nil)
             self.navigationController?.pushViewController(loginPageViewController, animated: true)
             
             let loginNavigationController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
@@ -59,30 +61,12 @@ class UserPageViewController: UIViewController {
             // then call the change root view controller function to change to main tab bar
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavigationController)
             
-           // let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            //appDelegate.window?.rootViewController = loginPageViewController
         }
         catch let error as NSError
         {
             print(error.localizedDescription)
         }
     }
-    //    func getCourseRefArray(completion: @escaping (Array<DocumentReference>?)->Void) {
-//        userDataSource.getCourseRefs(completion: {courseRefArray in
-//            completion(courseRefArray)})
-//    }
-        
-    
-    
-//    func getRealIndex(indexPath: IndexPath, completion: @escaping (Int?)->Void) {
-//        userDataSource.getCourseNumber(completion: {count in
-//            if (count! == 0) {
-//                completion(0)
-//            }
-//            let realIndex = indexPath.row.quotientAndRemainder(dividingBy: count!).remainder
-//            completion(realIndex)
-//        })
-//    }
     
     func getRealIndex(indexPath: IndexPath) -> Int {
         if (numberOfRows == 0) {
@@ -108,19 +92,6 @@ class UserPageViewController: UIViewController {
     }
     */
     
-//    func uploadMedia(completion: @escaping (_ url: String?) -> Void) {
-//        let storageRef = FIRStorage.storage().reference().child("myImage.png")
-//        if let uploadData = UIImagePNGRepresentation(self.myImageView.image!) {
-//            storageRef.put(uploadData, metadata: nil) { (metadata, error) in
-//                if error != nil {
-//                    print("error")
-//                    completion(nil)
-//                } else {
-//                    completion((metadata?.downloadURL()?.absoluteString)!))
-//                    // your uploaded photo url.
-//                }
-//           }
-//     }
         
 }
 
