@@ -33,6 +33,9 @@ class AddCourseDetailPageViewController: UIViewController {
         super.viewDidLoad()
         addButtonOutlet.isEnabled = false
         
+        commentTextView.clipsToBounds = true
+        commentTextView.layer.cornerRadius = 10.0
+        
         courseNameLabel.text = addedCourseName!
         // Do any additional setup after loading the view.
     }
