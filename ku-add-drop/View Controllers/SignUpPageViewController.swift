@@ -24,7 +24,7 @@ class SignUpPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "Sign Up"
         // Do any additional setup after loading the view.
     }
     

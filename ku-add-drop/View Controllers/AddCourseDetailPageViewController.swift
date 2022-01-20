@@ -20,6 +20,7 @@ class AddCourseDetailPageViewController: UIViewController {
     
     @IBOutlet weak var courseRatingLabel: UILabel!
     @IBOutlet weak var instructorRatingLabel: UILabel!
+    @IBOutlet weak var addButtonOutlet: UIButton!
     
     
     let db = Firestore.firestore()
@@ -30,9 +31,18 @@ class AddCourseDetailPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addButtonOutlet.isEnabled = false
         
         courseNameLabel.text = addedCourseName!
         // Do any additional setup after loading the view.
+    }
+    @IBAction func instructorNameChanged(_ sender: Any) {
+        if instructorTextInput.text == "" {
+            addButtonOutlet.isEnabled = false
+        }
+        else {
+            addButtonOutlet.isEnabled = true
+        }
     }
     
     @IBAction func postAction(_ sender: Any) {
