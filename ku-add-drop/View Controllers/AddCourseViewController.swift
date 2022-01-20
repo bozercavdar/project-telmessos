@@ -12,16 +12,27 @@ class AddCourseViewController: UIViewController {
 
     @IBOutlet weak var courseNameLabel: UITextField!
     var courseName : String = ""
-
+    @IBOutlet weak var addButtonOutlet: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addButtonOutlet.isEnabled = false
         // Do any additional setup after loading the view.
     }
     
+
+    @IBAction func textChanged(_ sender: Any) {
+        if courseNameLabel.text == "" {
+            addButtonOutlet.isEnabled = false
+        }
+        else{
+            addButtonOutlet.isEnabled = true
+        }
+    }
     @IBAction func addCourse(_ sender: Any) {
         courseName = courseNameLabel.text!
         courseNameLabel.text = ""
+        addButtonOutlet.isEnabled = false
     }
     
     

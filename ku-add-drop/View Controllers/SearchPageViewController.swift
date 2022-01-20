@@ -16,13 +16,22 @@ class SearchPageViewController: UIViewController {
     var courseName : String = ""
     let user = FirebaseAuth.Auth.auth().currentUser
     let db = Firestore.firestore()
+    @IBOutlet weak var searchButtonOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchButtonOutlet.isEnabled = false
 
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func courseNameChanged(_ sender: Any) {
+        if courseNameField.text == "" {
+            searchButtonOutlet.isEnabled = false
+        } else {
+            searchButtonOutlet.isEnabled = true
+        }
+    }
     @IBAction func searchClass(_ sender: Any) {
         courseName = courseNameField.text!
     }
