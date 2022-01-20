@@ -18,6 +18,8 @@ class CommentTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        commentContentLabel.clipsToBounds = true
+        commentContentLabel.layer.cornerRadius = 10.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

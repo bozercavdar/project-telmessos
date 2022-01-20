@@ -849,6 +849,10 @@ Burhan Özer Çavdar 🍅</string>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAE-fW-V7c">
                                                     <rect key="frame" x="10" y="55.5" width="344" height="104.5"/>
+                                                    <color key="backgroundColor" red="0.94472145051512146" green="0.95145744274176414" blue="0.97166541942169204" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <string key="text" base64-UTF8="YES">
+CgoJCQkJCQkJCQkJCQkJCQk
+</string>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

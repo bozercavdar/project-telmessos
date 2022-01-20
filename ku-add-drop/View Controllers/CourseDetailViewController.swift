@@ -42,6 +42,8 @@ class CourseDetailViewController: UIViewController {
         
         
         courseNameLabel.text = searchedCourse!
+        
+        
         // Do any additional setup after loading the view.
     }
     
